@@ -1,0 +1,6 @@
+framework module Pods_BLEMeteoTests {
+  umbrella header "Pods-BLEMeteoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

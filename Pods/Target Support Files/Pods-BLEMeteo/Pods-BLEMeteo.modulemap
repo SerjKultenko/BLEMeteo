@@ -1,0 +1,6 @@
+framework module Pods_BLEMeteo {
+  umbrella header "Pods-BLEMeteo-umbrella.h"
+
+  export *
+  module * { export * }
+}
