@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		85C2F913217A60AE0038C8D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F912217A60AE0038C8D1 /* AppDelegate.swift */; };
+		85C2F915217A60AE0038C8D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F914217A60AE0038C8D1 /* ViewController.swift */; };
+		85C2F918217A60AE0038C8D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C2F916217A60AE0038C8D1 /* Main.storyboard */; };
+		85C2F91B217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F919217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld */; };
+		85C2F91D217A60B10038C8D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C2F91C217A60B10038C8D1 /* Assets.xcassets */; };
+		85C2F920217A60B10038C8D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C2F91E217A60B10038C8D1 /* LaunchScreen.storyboard */; };
+		85C2F92B217A60B10038C8D1 /* BLEMeteoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F92A217A60B10038C8D1 /* BLEMeteoTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85C2F927217A60B10038C8D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85C2F907217A60AE0038C8D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85C2F90E217A60AE0038C8D1;
+			remoteInfo = BLEMeteo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		85C2F90F217A60AE0038C8D1 /* BLEMeteo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEMeteo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85C2F912217A60AE0038C8D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		85C2F914217A60AE0038C8D1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		85C2F917217A60AE0038C8D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		85C2F91A217A60AE0038C8D1 /* BLEMeteo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BLEMeteo.xcdatamodel; sourceTree = "<group>"; };
+		85C2F91C217A60B10038C8D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		85C2F91F217A60B10038C8D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		85C2F921217A60B10038C8D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85C2F926217A60B10038C8D1 /* BLEMeteoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEMeteoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85C2F92A217A60B10038C8D1 /* BLEMeteoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEMeteoTests.swift; sourceTree = "<group>"; };
+		85C2F92C217A60B10038C8D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		85C2F90C217A60AE0038C8D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85C2F923217A60B10038C8D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		85C2F906217A60AE0038C8D1 = {
+			isa = PBXGroup;
+			children = (
+				85C2F911217A60AE0038C8D1 /* BLEMeteo */,
+				85C2F929217A60B10038C8D1 /* BLEMeteoTests */,
+				85C2F910217A60AE0038C8D1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		85C2F910217A60AE0038C8D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85C2F90F217A60AE0038C8D1 /* BLEMeteo.app */,
+				85C2F926217A60B10038C8D1 /* BLEMeteoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		85C2F911217A60AE0038C8D1 /* BLEMeteo */ = {
+			isa = PBXGroup;
+			children = (
+				85C2F912217A60AE0038C8D1 /* AppDelegate.swift */,
+				85C2F914217A60AE0038C8D1 /* ViewController.swift */,
+				85C2F916217A60AE0038C8D1 /* Main.storyboard */,
+				85C2F91C217A60B10038C8D1 /* Assets.xcassets */,
+				85C2F91E217A60B10038C8D1 /* LaunchScreen.storyboard */,
+				85C2F921217A60B10038C8D1 /* Info.plist */,
+				85C2F919217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld */,
+			);
+			path = BLEMeteo;
+			sourceTree = "<group>";
+		};
+		85C2F929217A60B10038C8D1 /* BLEMeteoTests */ = {
+			isa = PBXGroup;
+			children = (
+				85C2F92A217A60B10038C8D1 /* BLEMeteoTests.swift */,
+				85C2F92C217A60B10038C8D1 /* Info.plist */,
+			);
+			path = BLEMeteoTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		85C2F90E217A60AE0038C8D1 /* BLEMeteo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85C2F92F217A60B10038C8D1 /* Build configuration list for PBXNativeTarget "BLEMeteo" */;
+			buildPhases = (
+				85C2F90B217A60AE0038C8D1 /* Sources */,
+				85C2F90C217A60AE0038C8D1 /* Frameworks */,
+				85C2F90D217A60AE0038C8D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BLEMeteo;
+			productName = BLEMeteo;
+			productReference = 85C2F90F217A60AE0038C8D1 /* BLEMeteo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		85C2F925217A60B10038C8D1 /* BLEMeteoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85C2F932217A60B10038C8D1 /* Build configuration list for PBXNativeTarget "BLEMeteoTests" */;
+			buildPhases = (
+				85C2F922217A60B10038C8D1 /* Sources */,
+				85C2F923217A60B10038C8D1 /* Frameworks */,
+				85C2F924217A60B10038C8D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				85C2F928217A60B10038C8D1 /* PBXTargetDependency */,
+			);
+			name = BLEMeteoTests;
+			productName = BLEMeteoTests;
+			productReference = 85C2F926217A60B10038C8D1 /* BLEMeteoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		85C2F907217A60AE0038C8D1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Sergey Kultenko";
+				TargetAttributes = {
+					85C2F90E217A60AE0038C8D1 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					85C2F925217A60B10038C8D1 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 85C2F90E217A60AE0038C8D1;
+					};
+				};
+			};
+			buildConfigurationList = 85C2F90A217A60AE0038C8D1 /* Build configuration list for PBXProject "BLEMeteo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 85C2F906217A60AE0038C8D1;
+			productRefGroup = 85C2F910217A60AE0038C8D1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				85C2F90E217A60AE0038C8D1 /* BLEMeteo */,
+				85C2F925217A60B10038C8D1 /* BLEMeteoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		85C2F90D217A60AE0038C8D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85C2F920217A60B10038C8D1 /* LaunchScreen.storyboard in Resources */,
+				85C2F91D217A60B10038C8D1 /* Assets.xcassets in Resources */,
+				85C2F918217A60AE0038C8D1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85C2F924217A60B10038C8D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		85C2F90B217A60AE0038C8D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85C2F915217A60AE0038C8D1 /* ViewController.swift in Sources */,
+				85C2F91B217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld in Sources */,
+				85C2F913217A60AE0038C8D1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85C2F922217A60B10038C8D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85C2F92B217A60B10038C8D1 /* BLEMeteoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		85C2F928217A60B10038C8D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85C2F90E217A60AE0038C8D1 /* BLEMeteo */;
+			targetProxy = 85C2F927217A60B10038C8D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		85C2F916217A60AE0038C8D1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85C2F917217A60AE0038C8D1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		85C2F91E217A60B10038C8D1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85C2F91F217A60B10038C8D1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		85C2F92D217A60B10038C8D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		85C2F92E217A60B10038C8D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		85C2F930217A60B10038C8D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ECXQ8F5RNV;
+				INFOPLIST_FILE = BLEMeteo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Serj.Kultenko.BLEMeteo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		85C2F931217A60B10038C8D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ECXQ8F5RNV;
+				INFOPLIST_FILE = BLEMeteo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Serj.Kultenko.BLEMeteo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		85C2F933217A60B10038C8D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ECXQ8F5RNV;
+				INFOPLIST_FILE = BLEMeteoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Serj.Kultenko.BLEMeteoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLEMeteo.app/BLEMeteo";
+			};
+			name = Debug;
+		};
+		85C2F934217A60B10038C8D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ECXQ8F5RNV;
+				INFOPLIST_FILE = BLEMeteoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Serj.Kultenko.BLEMeteoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLEMeteo.app/BLEMeteo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		85C2F90A217A60AE0038C8D1 /* Build configuration list for PBXProject "BLEMeteo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85C2F92D217A60B10038C8D1 /* Debug */,
+				85C2F92E217A60B10038C8D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85C2F92F217A60B10038C8D1 /* Build configuration list for PBXNativeTarget "BLEMeteo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85C2F930217A60B10038C8D1 /* Debug */,
+				85C2F931217A60B10038C8D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85C2F932217A60B10038C8D1 /* Build configuration list for PBXNativeTarget "BLEMeteoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85C2F933217A60B10038C8D1 /* Debug */,
+				85C2F934217A60B10038C8D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		85C2F919217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				85C2F91A217A60AE0038C8D1 /* BLEMeteo.xcdatamodel */,
+			);
+			currentVersion = 85C2F91A217A60AE0038C8D1 /* BLEMeteo.xcdatamodel */;
+			path = BLEMeteo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 85C2F907217A60AE0038C8D1 /* Project object */;
+}
