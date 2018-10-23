@@ -10,7 +10,7 @@ import Foundation
 
 class SensorData {
     
-    private var points: [Double] = []
+    private var points: [(timestamp: Date, value: Double)] = []
     
     var pointsNumber: Int {
         return points.count
@@ -18,20 +18,23 @@ class SensorData {
     
     func valueForPoint(withIndex index: Int) -> Double? {
         guard index >= 0, index < points.count else { return nil }
-        return points[index]
+        return points[index].value
     }
     
-    func appendPoint(withValue value: Double) {
-        points.append(value)
+    func appendPoint(atTimeStamp timestamp: Date, withValue value: Double) {
+        points.append((timestamp, value))
     }
     
     func clearAllPoints() {
         points.removeAll()
     }
     
-    func generateRandomData(_ numberOfItems: Int, max: Double, shouldIncludeOutliers: Bool = true) {
-        var data = [Double]()
-        for _ in 0 ..< numberOfItems {
+    func generateRandomData(_ numberOfItems: Int, max: Double, inTimeIntervalTillNow timeInterval: TimeInterval, shouldIncludeOutliers: Bool = true) {
+        var data = [(timestamp: Date, value: Double)]()
+        let period = timeInterval / Double(numberOfItems)
+        let initialTime = Date().addingTimeInterval( 0 - timeInterval)
+        for i in 0 ..< numberOfItems {
+            let time = initialTime.addingTimeInterval(Double(i) * period)
             var randomNumber = Double(arc4random()).truncatingRemainder(dividingBy: max)
             
             if(shouldIncludeOutliers) {
@@ -40,7 +43,7 @@ class SensorData {
                 }
             }
             
-            data.append(randomNumber)
+            data.append((timestamp: time, value: randomNumber))
         }
         points = data
     }

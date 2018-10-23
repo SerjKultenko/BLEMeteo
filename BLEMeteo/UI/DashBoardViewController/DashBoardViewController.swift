@@ -74,8 +74,7 @@ extension DashBoardViewController: UITableViewDataSource {
         let cell:SensorTableViewCell! = self.tableView.dequeueReusableCell(withIdentifier: kDashBoardCellReuseIdentifier) as? SensorTableViewCell
         if let sensor = viewModel?.sensor(withIndex: indexPath.section) {
             cell.sensorData = sensor
-            cell.setupGraph(graphView: cell.graphView)
-            cell.graphView.reload()
+            cell.initializeChart()
         }
         return cell
     }

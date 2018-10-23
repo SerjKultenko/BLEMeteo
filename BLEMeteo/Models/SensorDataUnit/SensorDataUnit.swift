@@ -15,8 +15,9 @@ struct SensorDataUnit {
     }
     var type: SensorDataUnitType
     var value: Double
+    var timeStamp: Date
     
-    init?(fromString string: String) {
+    init?(fromString string: String, withTimestamp timestamp: Date) {
         guard let sensorChar = string.first, let sensorType = SensorDataUnitType(rawValue: sensorChar)
             else { return nil }
         
@@ -29,5 +30,6 @@ struct SensorDataUnit {
         } else {
             return nil
         }
+        self.timeStamp = timestamp
     }
 }

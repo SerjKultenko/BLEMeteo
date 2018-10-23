@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ScrollableGraphView
+import SwiftChart
 
 class SensorTableViewCell: UITableViewCell {
 
@@ -15,14 +15,15 @@ class SensorTableViewCell: UITableViewCell {
     var sensorData: SensorData?
     
     // MARK: - IB Outlets
-    @IBOutlet weak var graphView: ScrollableGraphView!
+    //@IBOutlet weak var graphView: ScrollableGraphView!
+    @IBOutlet weak var chart: Chart!
     
     // MARK: - View Lificycle
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        graphView.dataSource = self
-        setupGraph(graphView: graphView)
+
+        //initializeChart()
     }
 
 //    override func setSelected(_ selected: Bool, animated: Bool) {
@@ -34,57 +35,142 @@ class SensorTableViewCell: UITableViewCell {
     
     // MARK: Helper Functions
     
-    // When using Interface Builder, only add the plots and reference lines in code.
-    func setupGraph(graphView: ScrollableGraphView) {
+    func initializeChart() {
+        guard let sensorData = sensorData else { return }
+
+        chart.delegate = self
+        chart.removeAllSeries()
+
+        // Initialize data series and labels
+        //let stockValues = getStockValues()
         
-        // Setup the first line plot.
-        let blueLinePlot = LinePlot(identifier: "one")
+        var serieData: [(Double, Double)] = []
+        var labels: [Double] = []
+        var labelsAsString: Array<String> = []
+
         
-        blueLinePlot.lineWidth = 5
-        blueLinePlot.lineColor = UIColor.colorFromHex(hexString: "#16aafc")
-        blueLinePlot.lineStyle = ScrollableGraphViewLineStyle.smooth
         
-        blueLinePlot.shouldFill = false
-        blueLinePlot.fillType = ScrollableGraphViewFillType.solid
-        blueLinePlot.fillColor = UIColor.colorFromHex(hexString: "#16aafc").withAlphaComponent(0.5)
+        let seconds = sensorData.pointsNumber * 2
+        var periods = 0
+        var period = 0
+        if seconds > 24 * 60 * 60 {
+            period = 60 * 60
+        } else if seconds > 60 * 60 {
+            period = 10 * 60
+        } else if seconds > 60 {
+            period = 60
+        } else if seconds > 10 {
+            period = 10
+        } else {
+            period = 1
+        }
+        periods = Int((Double(seconds) / Double(period)).rounded(.up))
         
-        blueLinePlot.adaptAnimationType = ScrollableGraphViewAnimationType.elastic
+        for i in 0...periods {
+            labels.append(Double(i))
+            let periodAsString = "-\((periods - i) * period) sec"
+            labelsAsString.append(periodAsString)
+        }
+
+        // Date formatter to retrieve the month names
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM"
         
-//        // Setup the second line plot.
-//        let orangeLinePlot = LinePlot(identifier: "two")
-//
-//        orangeLinePlot.lineWidth = 5
-//        orangeLinePlot.lineColor = UIColor.colorFromHex(hexString: "#ff7d78")
-//        orangeLinePlot.lineStyle = ScrollableGraphViewLineStyle.smooth
-//
-//        orangeLinePlot.shouldFill = false
-//        orangeLinePlot.fillType = ScrollableGraphViewFillType.solid
-//        orangeLinePlot.fillColor = UIColor.colorFromHex(hexString: "#ff7d78").withAlphaComponent(0.5)
-//
-//        orangeLinePlot.adaptAnimationType = ScrollableGraphViewAnimationType.elastic
         
-        // Customise the reference lines.
-        let referenceLines = ReferenceLines()
+        for i in 0..<sensorData.pointsNumber {
+            let value = sensorData.valueForPoint(withIndex: i)!
+            let time = i * 2
+            let currentPeriod = Double(time) / Double(period)
+            serieData.append((Double(currentPeriod), value))
+        }
         
-        referenceLines.referenceLineLabelFont = UIFont.boldSystemFont(ofSize: 8)
-        referenceLines.referenceLineColor = UIColor.black.withAlphaComponent(0.2)
-        referenceLines.referenceLineLabelColor = UIColor.black
         
-        referenceLines.dataPointLabelColor = UIColor.black.withAlphaComponent(1)
+        /*
+        for (i, value) in stockValues.enumerated() {
+            
+            serieData.append(value["close"] as! Double)
+            
+            // Use only one label for each month
+            let month = Int(dateFormatter.string(from: value["date"] as! Date))!
+            let monthAsString:String = dateFormatter.monthSymbols[month - 1]
+            if (labels.count == 0 || labelsAsString.last != monthAsString) {
+                labels.append(Double(i))
+                labelsAsString.append(monthAsString)
+            }
+        }
+ */
+        guard serieData.count > 0 else { return }
+
+
         
-        // All other graph customisation is done in Interface Builder,
-        // e.g, the background colour would be set in interface builder rather than in code.
-        // graphView.backgroundFillColor = UIColor.colorFromHex(hexString: "#333333")
+        let series = ChartSeries(data: serieData)
+        series.area = true
         
-        // Add everything to the graph.
-        graphView.addReferenceLines(referenceLines: referenceLines)
-        graphView.addPlot(plot: blueLinePlot)
-        //graphView.addPlot(plot: orangeLinePlot)
+        // Configure chart layout
+        
+        chart.lineWidth = 0.5
+        chart.labelFont = UIFont.systemFont(ofSize: 12)
+        chart.xLabels = labels
+        chart.xLabelsFormatter = { (labelIndex: Int, labelValue: Double) -> String in
+            return labelsAsString[labelIndex]
+        }
+        chart.xLabelsTextAlignment = .center
+        chart.yLabelsOnRightSide = true
+        // Add some padding above the x-axis
+        chart.minY = serieData.compactMap({ (x, y) -> Double? in
+            return y
+        }).min()! - 5
+        
+        chart.add(series)
+        
     }
+
 
 }
 
-extension SensorTableViewCell: ScrollableGraphViewDataSource {
+extension SensorTableViewCell: ChartDelegate {
+    // Chart delegate
+    
+    func didTouchChart(_ chart: Chart, indexes: Array<Int?>, x: Double, left: CGFloat) {
+        
+//        if let value = chart.valueForSeries(0, atIndex: indexes[0]) {
+//
+//            let numberFormatter = NumberFormatter()
+//            numberFormatter.minimumFractionDigits = 2
+//            numberFormatter.maximumFractionDigits = 2
+//            label.text = numberFormatter.string(from: NSNumber(value: value))
+//
+//            // Align the label to the touch left position, centered
+//            var constant = labelLeadingMarginInitialConstant + left - (label.frame.width / 2)
+//
+//            // Avoid placing the label on the left of the chart
+//            if constant < labelLeadingMarginInitialConstant {
+//                constant = labelLeadingMarginInitialConstant
+//            }
+//
+//            // Avoid placing the label on the right of the chart
+//            let rightMargin = chart.frame.width - label.frame.width
+//            if constant > rightMargin {
+//                constant = rightMargin
+//            }
+//
+//            labelLeadingMarginConstraint.constant = constant
+//
+//        }
+        
+    }
+    
+    func didFinishTouchingChart(_ chart: Chart) {
+//        label.text = ""
+//        labelLeadingMarginConstraint.constant = labelLeadingMarginInitialConstant
+    }
+    
+    func didEndTouchingChart(_ chart: Chart) {
+        
+    }
+}
+
+/*extension SensorTableViewCell: ScrollableGraphViewDataSource {
 
     func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
         return sensorData?.valueForPoint(withIndex: pointIndex) ?? 0
@@ -98,3 +184,4 @@ extension SensorTableViewCell: ScrollableGraphViewDataSource {
         return sensorData?.pointsNumber ?? 0
     }
 }
+*/

@@ -324,8 +324,9 @@ extension BTConnectionService: CBPeripheralDelegate {
     
     private func parseSensorData(str: String) {
         let datas = str.split(separator: " ")
+        let timestamp = Date()
         for data in datas {
-            if let sensorData = SensorDataUnit(fromString: String(data)) {
+            if let sensorData = SensorDataUnit(fromString: String(data), withTimestamp: timestamp) {
                 dataCallBack?(sensorData)
             }
         }

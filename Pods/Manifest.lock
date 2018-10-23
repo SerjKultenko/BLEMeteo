@@ -8,7 +8,7 @@ PODS:
   - RxSwift (4.3.1)
   - RxTest (4.3.1):
     - RxSwift (~> 4.0)
-  - ScrollableGraphView (4.0.6)
+  - SwiftChart (1.0.1)
 
 DEPENDENCIES:
   - NVActivityIndicatorView (~> 4.0)
@@ -16,7 +16,7 @@ DEPENDENCIES:
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - RxTest (~> 4.0)
-  - ScrollableGraphView
+  - SwiftChart
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -24,15 +24,15 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - RxTest
-    - ScrollableGraphView
+    - SwiftChart
 
 SPEC CHECKSUMS:
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
-  ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
+  SwiftChart: ba767a678d568a5ee22d419e146a0582865e1aff
 
-PODFILE CHECKSUM: bbf318f2358d1183fc091e001e6c9aa39a107437
+PODFILE CHECKSUM: 2160c833c16d6b60cc27f5983321edb8d31eab28
 
 COCOAPODS: 1.5.0

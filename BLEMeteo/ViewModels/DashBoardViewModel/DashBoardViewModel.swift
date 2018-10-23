@@ -17,11 +17,7 @@ class DashBoardViewModel: BaseViewModel {
     // MARK: - Vars
     var reloadDataSignal = BehaviorSubject<Bool>(value: false)
     
-    var sensorsData: [SensorData] = [SensorData(), SensorData(), SensorData()] {
-        didSet {
-            reloadDataSignal.onNext(true)
-        }
-    }
+    var sensorsData: [SensorData] = [SensorData(), SensorData(), SensorData()]
     
     var sensorsCount: Int {
         return 3
@@ -82,18 +78,18 @@ class DashBoardViewModel: BaseViewModel {
     init(withRouter router: IRouter, appState: StateStorage) {
         self.appState = appState
         super.init(with: router)
-//        sensorsData[0].generateRandomData(100, max: 100, shouldIncludeOutliers: true)
-//        sensorsData[1].generateRandomData(60, max: 40, shouldIncludeOutliers: false)
-        sensorsData[2].generateRandomData(24*60*6, max: 60, shouldIncludeOutliers: true)
+        //sensorsData[0].generateRandomData(100, max: 100, shouldIncludeOutliers: true)
+        //sensorsData[1].generateRandomData(60, max: 40, shouldIncludeOutliers: false)
+        sensorsData[2].generateRandomData(24*60, max: 60, inTimeIntervalTillNow: TimeInterval(24 * 60 * 60), shouldIncludeOutliers: true)
         btService.setupService {[weak self] (sensorData) in
             guard let safeSelf = self else { return }
             switch sensorData.type {
             case .temperature:
-                safeSelf.sensorsData[0].appendPoint(withValue: sensorData.value)
-                //safeSelf.reloadDataSignal.onNext(true)
+                safeSelf.sensorsData[0].appendPoint(atTimeStamp: sensorData.timeStamp, withValue: sensorData.value)
+                safeSelf.reloadDataSignal.onNext(true)
             case .humidity:
-                safeSelf.sensorsData[1].appendPoint(withValue: sensorData.value)
-                //safeSelf.reloadDataSignal.onNext(true)
+                safeSelf.sensorsData[1].appendPoint(atTimeStamp: sensorData.timeStamp, withValue: sensorData.value)
+                safeSelf.reloadDataSignal.onNext(true)
             }
         }
     }

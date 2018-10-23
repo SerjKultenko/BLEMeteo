@@ -83,7 +83,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			<key>FooterText</key>
 			<string>The MIT License (MIT)
 
-Copyright (c) 2016 Phillip
+Copyright (c) 2014 Giampaolo Bellavite
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -106,7 +106,7 @@ SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>ScrollableGraphView</string>
+			<string>SwiftChart</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
