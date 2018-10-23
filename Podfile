@@ -9,6 +9,7 @@ def mainPods
   pod 'RxCocoa', '~>4.0'
   pod 'NVActivityIndicatorView', '~>4.0'
   pod 'NVActivityIndicatorView/AppExtension', '~>4.0'
+  pod 'ScrollableGraphView'
 end
 
 target 'BLEMeteo' do

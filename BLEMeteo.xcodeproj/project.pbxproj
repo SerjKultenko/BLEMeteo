@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		40670CBF50F7A68277599EC8 /* Pods_BLEMeteo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814F7FAA4D3EA1A3CB14F51D /* Pods_BLEMeteo.framework */; };
+		85AB704A217CF13F0043D729 /* UIColor+colorFromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AB7049217CF13F0043D729 /* UIColor+colorFromHex.swift */; };
+		85AB704D217CF82D0043D729 /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AB704C217CF82D0043D729 /* SensorData.swift */; };
+		85AB7050217D002D0043D729 /* BTConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AB704F217D002D0043D729 /* BTConnectionService.swift */; };
+		85B2BEE4217E5C9A002366B3 /* SensorDataUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B2BEE3217E5C9A002366B3 /* SensorDataUnit.swift */; };
 		85C2F91B217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F919217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld */; };
 		85C2F92B217A60B10038C8D1 /* BLEMeteoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F92A217A60B10038C8D1 /* BLEMeteoTests.swift */; };
 		85C2F98C217A62240038C8D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C2F937217A62230038C8D1 /* LaunchScreen.storyboard */; };
@@ -26,6 +30,8 @@
 		85C2F9BA217A68440038C8D1 /* DashBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C2F9B8217A68440038C8D1 /* DashBoardViewController.xib */; };
 		85C2F9BD217A68750038C8D1 /* DashBoardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F9BC217A68750038C8D1 /* DashBoardRouter.swift */; };
 		85C2F9C0217A689C0038C8D1 /* DashBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F9BF217A689C0038C8D1 /* DashBoardViewModel.swift */; };
+		85F194B2217AFCB300905A74 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F194B0217AFCB300905A74 /* SensorTableViewCell.swift */; };
+		85F194B3217AFCB300905A74 /* SensorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F194B1217AFCB300905A74 /* SensorTableViewCell.xib */; };
 		F71AAC0011914B870F2C380E /* Pods_BLEMeteoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D69ADE36A72D05997D79E6D /* Pods_BLEMeteoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +49,10 @@
 		3D352D1B2876D1FC77961943 /* Pods-BLEMeteo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteo/Pods-BLEMeteo.debug.xcconfig"; sourceTree = "<group>"; };
 		3D69ADE36A72D05997D79E6D /* Pods_BLEMeteoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLEMeteoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		814F7FAA4D3EA1A3CB14F51D /* Pods_BLEMeteo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLEMeteo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85AB7049217CF13F0043D729 /* UIColor+colorFromHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+colorFromHex.swift"; sourceTree = "<group>"; };
+		85AB704C217CF82D0043D729 /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
+		85AB704F217D002D0043D729 /* BTConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTConnectionService.swift; sourceTree = "<group>"; };
+		85B2BEE3217E5C9A002366B3 /* SensorDataUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataUnit.swift; sourceTree = "<group>"; };
 		85C2F90F217A60AE0038C8D1 /* BLEMeteo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEMeteo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C2F91A217A60AE0038C8D1 /* BLEMeteo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BLEMeteo.xcdatamodel; sourceTree = "<group>"; };
 		85C2F921217A60B10038C8D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +75,8 @@
 		85C2F9B8217A68440038C8D1 /* DashBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardViewController.xib; sourceTree = "<group>"; };
 		85C2F9BC217A68750038C8D1 /* DashBoardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardRouter.swift; sourceTree = "<group>"; };
 		85C2F9BF217A689C0038C8D1 /* DashBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewModel.swift; sourceTree = "<group>"; };
+		85F194B0217AFCB300905A74 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
+		85F194B1217AFCB300905A74 /* SensorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorTableViewCell.xib; sourceTree = "<group>"; };
 		E23711792CB6503F4A08C19B /* Pods-BLEMeteoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E569E35DE5E550A1A4BDC9C3 /* Pods-BLEMeteo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteo/Pods-BLEMeteo.release.xcconfig"; sourceTree = "<group>"; };
 		FFEC9BA04034362D0B3B66FA /* Pods-BLEMeteoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +109,30 @@
 				3D69ADE36A72D05997D79E6D /* Pods_BLEMeteoTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		85AB704B217CF8170043D729 /* SensorData */ = {
+			isa = PBXGroup;
+			children = (
+				85AB704C217CF82D0043D729 /* SensorData.swift */,
+			);
+			path = SensorData;
+			sourceTree = "<group>";
+		};
+		85AB704E217CFFE20043D729 /* BTConnectionService */ = {
+			isa = PBXGroup;
+			children = (
+				85AB704F217D002D0043D729 /* BTConnectionService.swift */,
+			);
+			path = BTConnectionService;
+			sourceTree = "<group>";
+		};
+		85B2BEE2217E5C8B002366B3 /* SensorDataUnit */ = {
+			isa = PBXGroup;
+			children = (
+				85B2BEE3217E5C9A002366B3 /* SensorDataUnit.swift */,
+			);
+			path = SensorDataUnit;
 			sourceTree = "<group>";
 		};
 		85C2F906217A60AE0038C8D1 = {
@@ -147,6 +183,7 @@
 		85C2F935217A62230038C8D1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				85F194AF217AFC8100905A74 /* SensorTableViewCell */,
 				85C2F9B6217A68220038C8D1 /* DashBoardViewController */,
 				85C2F936217A62230038C8D1 /* Storyboards */,
 				85C2F947217A62230038C8D1 /* ISignalsProcessingViewController */,
@@ -249,6 +286,8 @@
 		85C2F96F217A62240038C8D1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				85B2BEE2217E5C8B002366B3 /* SensorDataUnit */,
+				85AB704B217CF8170043D729 /* SensorData */,
 				85C2F974217A62240038C8D1 /* StateStorage */,
 				85C2F976217A62240038C8D1 /* CoreDataModels */,
 				85C2F979217A62240038C8D1 /* Services */,
@@ -275,6 +314,7 @@
 		85C2F979217A62240038C8D1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				85AB704E217CFFE20043D729 /* BTConnectionService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -282,6 +322,7 @@
 		85C2F983217A62240038C8D1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				85AB7049217CF13F0043D729 /* UIColor+colorFromHex.swift */,
 				85C2F984217A62240038C8D1 /* UIViewController+Extensions.swift */,
 				85C2F985217A62240038C8D1 /* Object+Extensions.swift */,
 			);
@@ -319,6 +360,15 @@
 				85C2F9BF217A689C0038C8D1 /* DashBoardViewModel.swift */,
 			);
 			path = DashBoardViewModel;
+			sourceTree = "<group>";
+		};
+		85F194AF217AFC8100905A74 /* SensorTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				85F194B0217AFCB300905A74 /* SensorTableViewCell.swift */,
+				85F194B1217AFCB300905A74 /* SensorTableViewCell.xib */,
+			);
+			path = SensorTableViewCell;
 			sourceTree = "<group>";
 		};
 		F255081D45F3E4E1E12EB69F /* Pods */ = {
@@ -418,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85C2F98D217A62240038C8D1 /* Main.storyboard in Resources */,
+				85F194B3217AFCB300905A74 /* SensorTableViewCell.xib in Resources */,
 				85C2F9BA217A68440038C8D1 /* DashBoardViewController.xib in Resources */,
 				85C2F9B3217A62240038C8D1 /* Assets.xcassets in Resources */,
 				85C2F98C217A62240038C8D1 /* LaunchScreen.storyboard in Resources */,
@@ -444,12 +495,14 @@
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ScrollableGraphView/ScrollableGraphView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableGraphView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -466,6 +519,7 @@
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ScrollableGraphView/ScrollableGraphView.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -473,6 +527,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableGraphView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,17 +580,22 @@
 			files = (
 				85C2F9B9217A68440038C8D1 /* DashBoardViewController.swift in Sources */,
 				85C2F99C217A62240038C8D1 /* IRouter.swift in Sources */,
+				85AB704A217CF13F0043D729 /* UIColor+colorFromHex.swift in Sources */,
+				85AB7050217D002D0043D729 /* BTConnectionService.swift in Sources */,
 				85C2F999217A62240038C8D1 /* KSGLocalizedError.swift in Sources */,
 				85C2F91B217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld in Sources */,
 				85C2F9B0217A62240038C8D1 /* Object+Extensions.swift in Sources */,
+				85F194B2217AFCB300905A74 /* SensorTableViewCell.swift in Sources */,
 				85C2F9C0217A689C0038C8D1 /* DashBoardViewModel.swift in Sources */,
 				85C2F9A9217A62240038C8D1 /* StateStorage.swift in Sources */,
 				85C2F99F217A62240038C8D1 /* IRootRouter.swift in Sources */,
+				85B2BEE4217E5C9A002366B3 /* SensorDataUnit.swift in Sources */,
 				85C2F9BD217A68750038C8D1 /* DashBoardRouter.swift in Sources */,
 				85C2F9A0217A62240038C8D1 /* AppDelegate.swift in Sources */,
 				85C2F9A3217A62240038C8D1 /* BaseViewModel.swift in Sources */,
 				85C2F9AF217A62240038C8D1 /* UIViewController+Extensions.swift in Sources */,
 				85C2F996217A62240038C8D1 /* ISignalsProcessingViewController.swift in Sources */,
+				85AB704D217CF82D0043D729 /* SensorData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +762,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ECXQ8F5RNV;
 				INFOPLIST_FILE = "BLEMeteo/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -722,6 +783,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ECXQ8F5RNV;
 				INFOPLIST_FILE = "BLEMeteo/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

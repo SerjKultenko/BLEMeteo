@@ -20,11 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     appState = StateStorage.loadFromUserDefaults()
     
-//    if appState == nil {
-//      // Load defaults
-//      let presets = PresetsFactory.createPresets()
-//      self.appState = StateStorage(presets: presets, currentPreset: presets.first!)
-//    }
+    if appState == nil {
+      // Load defaults
+      self.appState = StateStorage()
+    }
     
     let router = DashBoardRouter()
     let rootVCContext = RootVCContext(appState: self.appState!, window: self.window!)

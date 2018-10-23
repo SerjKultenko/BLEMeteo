@@ -12,33 +12,45 @@ import RxSwift
 class DashBoardViewModel: BaseViewModel {
     
     private var appState: StateStorage
+    private var btService: BTConnectionService = BTConnectionService()
     
     // MARK: - Vars
     var reloadDataSignal = BehaviorSubject<Bool>(value: false)
     
-    var sensorsCount: Int {
-        return 3
-    }
-    
-/*    var presetUpdated: PublishSubject<GeneratorPreset> {
-        return appState.currPresetUpdated
-    }
-    
-    private var languageUnits: [LanguageUnit] = [] {
+    var sensorsData: [SensorData] = [SensorData(), SensorData(), SensorData()] {
         didSet {
             reloadDataSignal.onNext(true)
         }
     }
     
-    var linesCount: Int {
-        return languageUnits.count
+    var sensorsCount: Int {
+        return 3
     }
     
-    func getLanguageUnit(atIndex index: Int) -> LanguageUnit? {
-        guard index >= 0, languageUnits.count > index else { return nil }
-        return languageUnits[index]
+    private let sensorNames: [String] = ["Temperature", "Humidity", "Pressure"]
+    func sensorName(forIndex index: Int) -> String {
+        guard index >= 0, index < sensorNames.count else { return "" }
+        return sensorNames[index]
     }
     
+    func sensor(withIndex index: Int) -> SensorData? {
+        guard index >= 0, index < sensorsData.count else { return nil }
+        return sensorsData[index]
+    }
+    
+//    func pointsNumber(inSensorWithIndex index: Int) -> Int {
+//        guard let sensor = sensor(withIndex: index) else { return 0 }
+//        return sensor.pointsNumber
+//    }
+//
+//    func value(forPointWithIndex pointIndex: Int, inSensor index: Int) -> Double? {
+//        guard let sensor = sensor(withIndex: index) else { return nil }
+//        return sensor.valueForPoint(withIndex: pointIndex)
+//    }
+    
+/*    var presetUpdated: PublishSubject<GeneratorPreset> {
+        return appState.currPresetUpdated
+    }
     
     // MARK: - Utilities
     
@@ -65,9 +77,24 @@ class DashBoardViewModel: BaseViewModel {
         router.route(with: MainScreenRouter.RouteType.changePreset, animated: true, completion: nil)
     }
     */
+    
     // MARK: - Initialization
     init(withRouter router: IRouter, appState: StateStorage) {
         self.appState = appState
         super.init(with: router)
+//        sensorsData[0].generateRandomData(100, max: 100, shouldIncludeOutliers: true)
+//        sensorsData[1].generateRandomData(60, max: 40, shouldIncludeOutliers: false)
+        sensorsData[2].generateRandomData(24*60*6, max: 60, shouldIncludeOutliers: true)
+        btService.setupService {[weak self] (sensorData) in
+            guard let safeSelf = self else { return }
+            switch sensorData.type {
+            case .temperature:
+                safeSelf.sensorsData[0].appendPoint(withValue: sensorData.value)
+                //safeSelf.reloadDataSignal.onNext(true)
+            case .humidity:
+                safeSelf.sensorsData[1].appendPoint(withValue: sensorData.value)
+                //safeSelf.reloadDataSignal.onNext(true)
+            }
+        }
     }
 }

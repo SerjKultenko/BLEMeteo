@@ -18,7 +18,7 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Const
-    private let kDashBoardCellReuseIdentifier = "kDashBoardCellReuseIdentifier"
+    private let kDashBoardCellReuseIdentifier = "DashBoardCellReuseIdentifier"
     
     
     // MARK: - View Controller Lifecycle
@@ -29,6 +29,8 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(UINib(nibName: "SensorTableViewCell", bundle: nil), forCellReuseIdentifier: kDashBoardCellReuseIdentifier)
+        
         if viewModel != nil {
             bindSignalProcessing(forBaseViewModel: viewModel!)
         }
@@ -36,7 +38,7 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
     }
     
     private func reactiveBindings() {
-/*        viewModel?.reloadDataSignal
+        viewModel?.reloadDataSignal
             .observeOn(MainScheduler.instance)
             .subscribe({[weak self] (event) in
                 guard let safeSelf = self else {return}
@@ -48,7 +50,7 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
                 default:
                     break
                 }
-            }).disposed(by: disposeBag) */
+            }).disposed(by: disposeBag)
     }
 
     // MARK: - Actions
@@ -59,26 +61,22 @@ extension DashBoardViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel?.sensorsCount ?? 0
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel?.sensorName(forIndex: section)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell:UITableViewCell! = self.tableView.dequeueReusableCell(withIdentifier: kDashBoardCellReuseIdentifier)
-        if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: kDashBoardCellReuseIdentifier)
-            cell.detailTextLabel?.numberOfLines = 0
-            //cell.imageView?.image = UIImage(named: "news-image")
+        let cell:SensorTableViewCell! = self.tableView.dequeueReusableCell(withIdentifier: kDashBoardCellReuseIdentifier) as? SensorTableViewCell
+        if let sensor = viewModel?.sensor(withIndex: indexPath.section) {
+            cell.sensorData = sensor
+            cell.setupGraph(graphView: cell.graphView)
+            cell.graphView.reload()
         }
-        
-//        if let langUnitForCell = self.viewModel?.getLanguageUnit(atIndex: indexPath.row) {
-//            cell.textLabel?.text = langUnitForCell.text
-//            cell.detailTextLabel?.text = String(langUnitForCell.frequency)
-//        } else {
-//            cell.textLabel?.text = ""
-//            cell.detailTextLabel?.text = ""
-//        }
-        
         return cell
     }
 }
