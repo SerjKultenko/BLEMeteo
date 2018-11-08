@@ -10,26 +10,64 @@ import Foundation
 
 class SensorData {
     
+    private let lock: NSLock = NSLock()
     private var points: [(timestamp: Date, value: Double)] = []
     
     var pointsNumber: Int {
-        return points.count
+        lock.lock()
+        let count = points.count
+        lock.unlock()
+        return count
     }
     
+    func minTimeStamp() -> Date? {
+        lock.lock()
+        let result = points.min { (lhs, rhs) -> Bool in
+            return lhs.timestamp < rhs.timestamp
+        }?.timestamp
+        lock.unlock()
+        return result
+    }
+
+    func maxTimeStamp() -> Date? {
+        lock.lock()
+        let result = points.max { (lhs, rhs) -> Bool in
+            return lhs.timestamp < rhs.timestamp
+            }?.timestamp
+        lock.unlock()
+        return result
+    }
+
     func valueForPoint(withIndex index: Int) -> Double? {
         guard index >= 0, index < points.count else { return nil }
-        return points[index].value
+        lock.lock()
+        let result = points[index].value
+        lock.unlock()
+        return result
+    }
+
+    func timestampForPoint(withIndex index: Int) -> Date? {
+        guard index >= 0, index < points.count else { return nil }
+        lock.lock()
+        let result = points[index].timestamp
+        lock.unlock()
+        return result
     }
     
     func appendPoint(atTimeStamp timestamp: Date, withValue value: Double) {
+        lock.lock()
         points.append((timestamp, value))
+        lock.unlock()
     }
     
     func clearAllPoints() {
+        lock.lock()
         points.removeAll()
+        lock.unlock()
     }
     
-    func generateRandomData(_ numberOfItems: Int, max: Double, inTimeIntervalTillNow timeInterval: TimeInterval, shouldIncludeOutliers: Bool = true) {
+    func fillWithRandomData(_ numberOfItems: Int, max: Double, inTimeIntervalTillNow timeInterval: TimeInterval, shouldIncludeOutliers: Bool = true) {
+        lock.lock()
         var data = [(timestamp: Date, value: Double)]()
         let period = timeInterval / Double(numberOfItems)
         let initialTime = Date().addingTimeInterval( 0 - timeInterval)
@@ -46,5 +84,6 @@ class SensorData {
             data.append((timestamp: time, value: randomNumber))
         }
         points = data
+        lock.unlock()
     }
 }

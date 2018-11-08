@@ -11,9 +11,6 @@ import CoreBluetooth
 
 class BTConnectionService: NSObject {
 
-    // STEP 0.0: specify GATT "Assigned Numbers" as
-    // constants so they're readable and updatable
-    
     // MARK: - Core Bluetooth service IDs
 //    let BLE_Heart_Rate_Service_CBUUID = CBUUID(string: "0x180D")
     let BLE_Arduino_Meteo_Service_CBUUID = CBUUID(string: "0xFFE0")
@@ -25,14 +22,12 @@ class BTConnectionService: NSObject {
 
     
     // MARK: - Core Bluetooth class member variables
-    
-    // STEP 0.2: create instance variables of the
-    // CBCentralManager and CBPeripheral so they
-    // persist for the duration of the app's life
     private var centralManager: CBCentralManager?
     private var peripheralMeteoMonitor: CBPeripheral?
     private var dataCallBack: ((SensorDataUnit) -> Void)?
     
+    // Buffer for receiving data
+    private var dataBuffer: String = ""
     
     func setupService(withSensorDataCallback callback: @escaping (SensorDataUnit) -> Void) {
         let centralQueue: DispatchQueue = DispatchQueue(label: "com.Serj.Kultenko.BLEMeteo.BTCentralManagerQueue", attributes: .concurrent)
@@ -323,12 +318,20 @@ extension BTConnectionService: CBPeripheralDelegate {
     }
     
     private func parseSensorData(str: String) {
-        let datas = str.split(separator: " ")
+        let data = self.dataBuffer + str
+        var nextChank = ""
+        
         let timestamp = Date()
-        for data in datas {
-            if let sensorData = SensorDataUnit(fromString: String(data), withTimestamp: timestamp) {
-                dataCallBack?(sensorData)
+        for char in data {
+            if char == " " {
+                if let sensorData = SensorDataUnit(fromString: String(nextChank), withTimestamp: timestamp) {
+                    dataCallBack?(sensorData)
+                }
+                nextChank = ""
+            } else {
+                nextChank += String(char)
             }
         }
+        self.dataBuffer = nextChank // Add data without terminal space (" ")
     }
 }

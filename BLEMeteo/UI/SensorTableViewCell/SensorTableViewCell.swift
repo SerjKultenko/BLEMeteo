@@ -17,6 +17,8 @@ class SensorTableViewCell: UITableViewCell {
     // MARK: - IB Outlets
     //@IBOutlet weak var graphView: ScrollableGraphView!
     @IBOutlet weak var chart: Chart!
+    @IBOutlet weak var chartValueLabel: UILabel!
+    
     
     // MARK: - View Lificycle
     override func awakeFromNib() {
@@ -48,9 +50,23 @@ class SensorTableViewCell: UITableViewCell {
         var labels: [Double] = []
         var labelsAsString: Array<String> = []
 
+        var formatter = DateFormatter()
+        
+        //formatter.locale = Locale.current
+        formatter.calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        //formatter.timeZone = TimeZone.current//TimeZone(identifier: "UTC")
+
         
         
-        let seconds = sensorData.pointsNumber * 2
+        formatter.dateFormat = "HH:mm:ss"
+        
+        
+        guard let minDate = sensorData.minTimeStamp(), let maxDate = sensorData.maxTimeStamp() else { return }
+        
+        let seconds = maxDate.timeIntervalSince(minDate)
+        
+
+        //let seconds = sensorData.pointsNumber * 2
         var periods = 0
         var period = 0
         if seconds > 24 * 60 * 60 {
@@ -68,7 +84,8 @@ class SensorTableViewCell: UITableViewCell {
         
         for i in 0...periods {
             labels.append(Double(i))
-            let periodAsString = "-\((periods - i) * period) sec"
+            let periodAsString = formatter.string(from: minDate.addingTimeInterval(Double(i) * Double(period)))
+            //let periodAsString = "-\((periods - i) * period) sec"
             labelsAsString.append(periodAsString)
         }
 
@@ -78,9 +95,10 @@ class SensorTableViewCell: UITableViewCell {
         
         
         for i in 0..<sensorData.pointsNumber {
-            let value = sensorData.valueForPoint(withIndex: i)!
-            let time = i * 2
-            let currentPeriod = Double(time) / Double(period)
+            guard let value = sensorData.valueForPoint(withIndex: i),
+                let time = sensorData.timestampForPoint(withIndex: i) else { break }
+            //let time = i * 2
+            let currentPeriod = Double(time.timeIntervalSince(minDate)) / Double(period)
             serieData.append((Double(currentPeriod), value))
         }
         
