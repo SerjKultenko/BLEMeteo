@@ -1,5 +1,5 @@
 //
-//  KSGLocalizedError.swift
+//  ErrorWithNote.swift
 //  MVVMTemplate
 //
 //  Created by Sergei Kultenko on 13/07/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct KSGLocalizedError: LocalizedError {
+struct ErrorWithNote: LocalizedError {
   
   var code: Int?
   var errorDescription: String? { return _description }
@@ -21,7 +21,7 @@ struct KSGLocalizedError: LocalizedError {
     self.code = code
   }
   
-  static func unknown() -> KSGLocalizedError {
-    return KSGLocalizedError(description: "Unknown Error")
+  static func unknown() -> ErrorWithNote {
+    return ErrorWithNote(description: "Unknown Error")
   }
 }

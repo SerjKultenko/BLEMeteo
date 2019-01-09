@@ -9,14 +9,8 @@
 import Foundation
 
 struct SensorDataUnit {
-    enum SensorDataUnitType: String {
-        case temperature = "TE"
-        case humidity = "HU"
-        case pressure = "PR"
-        case temperatureBMP280 = "TB"
-        case carbonDioxidePPM = "CO"
-    }
-    var type: SensorDataUnitType
+    
+    var type: SensorDataType
     var value: Double
     var timeStamp: Date
     
@@ -25,7 +19,7 @@ struct SensorDataUnit {
         let idxFrom = string.startIndex
         let idxTo = string.index(string.startIndex, offsetBy: 2)
         let sensorTypeSubstring = string[idxFrom..<idxTo]
-        guard let sensorType = SensorDataUnitType(rawValue: String(sensorTypeSubstring))
+        guard let sensorType = SensorDataType(rawValue: String(sensorTypeSubstring))
             else { return nil }
         
         type = sensorType
@@ -38,5 +32,11 @@ struct SensorDataUnit {
             return nil
         }
         self.timeStamp = timestamp
+    }
+    
+    init(type: SensorDataType, value: Double, timeStamp: Date) {
+        self.type = type
+        self.value = value
+        self.timeStamp = timeStamp
     }
 }

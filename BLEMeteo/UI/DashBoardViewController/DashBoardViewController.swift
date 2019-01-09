@@ -16,6 +16,7 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
     
     // MARK: - IB Outlets
     @IBOutlet weak var tableView: UITableView!
+    var filterBarButton: UIBarButtonItem?
     
     // MARK: - Const
     private let kDashBoardCellReuseIdentifier = "DashBoardCellReuseIdentifier"
@@ -31,6 +32,10 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
         
         self.tableView.register(UINib(nibName: "SensorTableViewCell", bundle: nil), forCellReuseIdentifier: kDashBoardCellReuseIdentifier)
         
+        let selector = #selector(DashBoardViewController.filterButtonPressed)
+        filterBarButton = UIBarButtonItem(image: UIImage(named: "filter-icon"), style: .plain, target: self, action: selector)
+        navigationItem.rightBarButtonItem = filterBarButton
+        
         if viewModel != nil {
             bindSignalProcessing(forBaseViewModel: viewModel!)
         }
@@ -43,9 +48,11 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
             .subscribe({[weak self] (event) in
                 guard let safeSelf = self else {return}
                 switch event {
-                case let .next(shouldReloadData):
-                    if shouldReloadData {
-                        safeSelf.tableView.reloadData()
+                case let .next(sensorToReload):
+                    if sensorToReload >= 0 {
+                        if let cell = safeSelf.tableView.cellForRow(at: IndexPath(row: 0, section: sensorToReload)) as? SensorTableViewCell {
+                            cell.initializeChart()
+                        }
                     }
                 default:
                     break
@@ -55,6 +62,13 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
 
     // MARK: - Actions
     
+    @objc func filterButtonPressed() {
+        let vc = PeriodChooserViewController()
+        vc.modalPresentationStyle = .popover
+        present(vc, animated: true, completion: nil)
+        vc.popoverPresentationController?.barButtonItem = filterBarButton
+    }
+
 }
 
 extension DashBoardViewController: UITableViewDataSource {

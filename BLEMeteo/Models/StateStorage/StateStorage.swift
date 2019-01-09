@@ -11,21 +11,6 @@ import RxSwift
 
 class StateStorage: Codable {
   
-  // MARK: - Vars
-//  var currentPreset: GeneratorPreset {
-//    didSet {
-//      currPresetUpdated.onNext(currentPreset)
-//    }
-//  }
-//  var presets: [GeneratorPreset]
-//  var currPresetUpdated = PublishSubject<GeneratorPreset>()
-  
-  // MARK: - Codable Support
-//  private enum CodingKeys: String, CodingKey {
-//    case currentPreset
-//    case presets
-//  }
-
   // MARK: - Persistens Support
   static private let kAppStateStorageKey = "kAppStateStorageKey"
 
@@ -42,8 +27,4 @@ class StateStorage: Codable {
   }
 
   // MARK: - Initialization
-//  init(presets: [GeneratorPreset], currentPreset: GeneratorPreset) {
-//    self.presets = presets
-//    self.currentPreset = currentPreset
-//  }
 }

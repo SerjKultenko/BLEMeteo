@@ -9,6 +9,10 @@
 import Foundation
 import CoreBluetooth
 
+enum BTConnectionServiceError: Error {
+    case bluetoothStatusUnsuported
+}
+
 class BTConnectionService: NSObject {
 
     // MARK: - Core Bluetooth service IDs
@@ -24,12 +28,12 @@ class BTConnectionService: NSObject {
     // MARK: - Core Bluetooth class member variables
     private var centralManager: CBCentralManager?
     private var peripheralMeteoMonitor: CBPeripheral?
-    private var dataCallBack: ((SensorDataUnit) -> Void)?
+    private var dataCallBack: ((_ error: Error?, _ sensorDataUnit: SensorDataUnit?) -> Void)?
     
     // Buffer for receiving data
     private var dataBuffer: String = ""
     
-    func setupService(withSensorDataCallback callback: @escaping (SensorDataUnit) -> Void) {
+    func setupService(withSensorDataCallback callback: @escaping (_ error: Error?, _ sensorDataUnit: SensorDataUnit?) -> Void) {
         let centralQueue: DispatchQueue = DispatchQueue(label: "com.Serj.Kultenko.BLEMeteo.BTCentralManagerQueue", attributes: .concurrent)
         // STEP 2: create a central to scan for, connect to,
         // manage, and collect data from peripherals
@@ -118,19 +122,15 @@ extension BTConnectionService: CBCentralManagerDelegate {
             
         case .unknown:
             print("Bluetooth status is UNKNOWN")
-            //bluetoothOffLabel.alpha = 1.0
         case .resetting:
             print("Bluetooth status is RESETTING")
-            //bluetoothOffLabel.alpha = 1.0
         case .unsupported:
+            dataCallBack?(BTConnectionServiceError.bluetoothStatusUnsuported, nil)
             print("Bluetooth status is UNSUPPORTED")
-            //bluetoothOffLabel.alpha = 1.0
         case .unauthorized:
             print("Bluetooth status is UNAUTHORIZED")
-            //bluetoothOffLabel.alpha = 1.0
         case .poweredOff:
             print("Bluetooth status is POWERED OFF")
-            //bluetoothOffLabel.alpha = 1.0
         case .poweredOn:
             print("Bluetooth status is POWERED ON")
             
@@ -325,7 +325,7 @@ extension BTConnectionService: CBPeripheralDelegate {
         for char in data {
             if char == " " {
                 if let sensorData = SensorDataUnit(fromString: String(nextChank), withTimestamp: timestamp) {
-                    dataCallBack?(sensorData)
+                    dataCallBack?(nil, sensorData)
                 }
                 nextChank = ""
             } else {

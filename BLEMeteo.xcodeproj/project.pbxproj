@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		40670CBF50F7A68277599EC8 /* Pods_BLEMeteo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814F7FAA4D3EA1A3CB14F51D /* Pods_BLEMeteo.framework */; };
 		85AB704A217CF13F0043D729 /* UIColor+colorFromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AB7049217CF13F0043D729 /* UIColor+colorFromHex.swift */; };
-		85AB704D217CF82D0043D729 /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AB704C217CF82D0043D729 /* SensorData.swift */; };
+		85AB704D217CF82D0043D729 /* SensorDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AB704C217CF82D0043D729 /* SensorDataSet.swift */; };
 		85AB7050217D002D0043D729 /* BTConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AB704F217D002D0043D729 /* BTConnectionService.swift */; };
 		85B2BEE4217E5C9A002366B3 /* SensorDataUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B2BEE3217E5C9A002366B3 /* SensorDataUnit.swift */; };
 		85C2F91B217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F919217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld */; };
@@ -17,7 +17,7 @@
 		85C2F98C217A62240038C8D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C2F937217A62230038C8D1 /* LaunchScreen.storyboard */; };
 		85C2F98D217A62240038C8D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C2F939217A62230038C8D1 /* Main.storyboard */; };
 		85C2F996217A62240038C8D1 /* ISignalsProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F948217A62230038C8D1 /* ISignalsProcessingViewController.swift */; };
-		85C2F999217A62240038C8D1 /* KSGLocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F94F217A62230038C8D1 /* KSGLocalizedError.swift */; };
+		85C2F999217A62240038C8D1 /* ErrorWithNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F94F217A62230038C8D1 /* ErrorWithNote.swift */; };
 		85C2F99C217A62240038C8D1 /* IRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F957217A62230038C8D1 /* IRouter.swift */; };
 		85C2F99F217A62240038C8D1 /* IRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F95E217A62230038C8D1 /* IRootRouter.swift */; };
 		85C2F9A0217A62240038C8D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F960217A62230038C8D1 /* AppDelegate.swift */; };
@@ -32,6 +32,14 @@
 		85C2F9C0217A689C0038C8D1 /* DashBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F9BF217A689C0038C8D1 /* DashBoardViewModel.swift */; };
 		85F194B2217AFCB300905A74 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F194B0217AFCB300905A74 /* SensorTableViewCell.swift */; };
 		85F194B3217AFCB300905A74 /* SensorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F194B1217AFCB300905A74 /* SensorTableViewCell.xib */; };
+		C430FC1921954D7F00F88EAC /* ISensorDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430FC1821954D7F00F88EAC /* ISensorDataStorage.swift */; };
+		C430FC1B21954F3400F88EAC /* SensorCoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430FC1A21954F3400F88EAC /* SensorCoreDataStorage.swift */; };
+		C430FC1E2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430FC1C2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift */; };
+		C4B74CCA21D5EC660040CCB0 /* PeriodChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B74CC821D5EC660040CCB0 /* PeriodChooserViewController.swift */; };
+		C4B74CCB21D5EC660040CCB0 /* PeriodChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4B74CC921D5EC660040CCB0 /* PeriodChooserViewController.xib */; };
+		C4B74CCE21D5FA510040CCB0 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B74CCD21D5FA510040CCB0 /* TimePeriod.swift */; };
+		C4C84A2E21E056DD00973E4C /* TimePeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C84A2D21E056DD00973E4C /* TimePeriodTests.swift */; };
+		C4C91A6421E1E14F00BB5F51 /* SensorDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C91A6321E1E14F00BB5F51 /* SensorDataType.swift */; };
 		F71AAC0011914B870F2C380E /* Pods_BLEMeteoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D69ADE36A72D05997D79E6D /* Pods_BLEMeteoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +58,7 @@
 		3D69ADE36A72D05997D79E6D /* Pods_BLEMeteoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLEMeteoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		814F7FAA4D3EA1A3CB14F51D /* Pods_BLEMeteo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLEMeteo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85AB7049217CF13F0043D729 /* UIColor+colorFromHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+colorFromHex.swift"; sourceTree = "<group>"; };
-		85AB704C217CF82D0043D729 /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
+		85AB704C217CF82D0043D729 /* SensorDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataSet.swift; sourceTree = "<group>"; };
 		85AB704F217D002D0043D729 /* BTConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTConnectionService.swift; sourceTree = "<group>"; };
 		85B2BEE3217E5C9A002366B3 /* SensorDataUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataUnit.swift; sourceTree = "<group>"; };
 		85C2F90F217A60AE0038C8D1 /* BLEMeteo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEMeteo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +70,7 @@
 		85C2F938217A62230038C8D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85C2F93A217A62230038C8D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85C2F948217A62230038C8D1 /* ISignalsProcessingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISignalsProcessingViewController.swift; sourceTree = "<group>"; };
-		85C2F94F217A62230038C8D1 /* KSGLocalizedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSGLocalizedError.swift; sourceTree = "<group>"; };
+		85C2F94F217A62230038C8D1 /* ErrorWithNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorWithNote.swift; sourceTree = "<group>"; };
 		85C2F957217A62230038C8D1 /* IRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IRouter.swift; sourceTree = "<group>"; };
 		85C2F95E217A62230038C8D1 /* IRootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IRootRouter.swift; sourceTree = "<group>"; };
 		85C2F960217A62230038C8D1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +85,14 @@
 		85C2F9BF217A689C0038C8D1 /* DashBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewModel.swift; sourceTree = "<group>"; };
 		85F194B0217AFCB300905A74 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
 		85F194B1217AFCB300905A74 /* SensorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorTableViewCell.xib; sourceTree = "<group>"; };
+		C430FC1821954D7F00F88EAC /* ISensorDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISensorDataStorage.swift; sourceTree = "<group>"; };
+		C430FC1A21954F3400F88EAC /* SensorCoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorCoreDataStorage.swift; sourceTree = "<group>"; };
+		C430FC1C2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorDataEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C4B74CC821D5EC660040CCB0 /* PeriodChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodChooserViewController.swift; sourceTree = "<group>"; };
+		C4B74CC921D5EC660040CCB0 /* PeriodChooserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeriodChooserViewController.xib; sourceTree = "<group>"; };
+		C4B74CCD21D5FA510040CCB0 /* TimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
+		C4C84A2D21E056DD00973E4C /* TimePeriodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodTests.swift; sourceTree = "<group>"; };
+		C4C91A6321E1E14F00BB5F51 /* SensorDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataType.swift; sourceTree = "<group>"; };
 		E23711792CB6503F4A08C19B /* Pods-BLEMeteoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E569E35DE5E550A1A4BDC9C3 /* Pods-BLEMeteo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteo/Pods-BLEMeteo.release.xcconfig"; sourceTree = "<group>"; };
 		FFEC9BA04034362D0B3B66FA /* Pods-BLEMeteoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +130,7 @@
 		85AB704B217CF8170043D729 /* SensorData */ = {
 			isa = PBXGroup;
 			children = (
-				85AB704C217CF82D0043D729 /* SensorData.swift */,
+				85AB704C217CF82D0043D729 /* SensorDataSet.swift */,
 			);
 			path = SensorData;
 			sourceTree = "<group>";
@@ -174,6 +190,7 @@
 		85C2F929217A60B10038C8D1 /* BLEMeteoTests */ = {
 			isa = PBXGroup;
 			children = (
+				C4C84A2B21E056B200973E4C /* Core Layer */,
 				85C2F92A217A60B10038C8D1 /* BLEMeteoTests.swift */,
 				85C2F92C217A60B10038C8D1 /* Info.plist */,
 			);
@@ -183,6 +200,7 @@
 		85C2F935217A62230038C8D1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C4B74CC721D5EC340040CCB0 /* PeriodChooser */,
 				85F194AF217AFC8100905A74 /* SensorTableViewCell */,
 				85C2F9B6217A68220038C8D1 /* DashBoardViewController */,
 				85C2F936217A62230038C8D1 /* Storyboards */,
@@ -211,6 +229,7 @@
 		85C2F949217A62230038C8D1 /* Core Layer */ = {
 			isa = PBXGroup;
 			children = (
+				C4B74CCC21D5FA100040CCB0 /* TimePeriod */,
 				85C2F94E217A62230038C8D1 /* Errors */,
 			);
 			path = "Core Layer";
@@ -219,7 +238,7 @@
 		85C2F94E217A62230038C8D1 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				85C2F94F217A62230038C8D1 /* KSGLocalizedError.swift */,
+				85C2F94F217A62230038C8D1 /* ErrorWithNote.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -286,6 +305,7 @@
 		85C2F96F217A62240038C8D1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C4C91A6221E1E12E00BB5F51 /* SensorDataType */,
 				85B2BEE2217E5C8B002366B3 /* SensorDataUnit */,
 				85AB704B217CF8170043D729 /* SensorData */,
 				85C2F974217A62240038C8D1 /* StateStorage */,
@@ -306,6 +326,7 @@
 		85C2F976217A62240038C8D1 /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				C430FC1C2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift */,
 				85C2F919217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld */,
 			);
 			path = CoreDataModels;
@@ -314,6 +335,7 @@
 		85C2F979217A62240038C8D1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C430FC1721954D4E00F88EAC /* CoreDataStorage */,
 				85AB704E217CFFE20043D729 /* BTConnectionService */,
 			);
 			path = Services;
@@ -369,6 +391,56 @@
 				85F194B1217AFCB300905A74 /* SensorTableViewCell.xib */,
 			);
 			path = SensorTableViewCell;
+			sourceTree = "<group>";
+		};
+		C430FC1721954D4E00F88EAC /* CoreDataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				C430FC1821954D7F00F88EAC /* ISensorDataStorage.swift */,
+				C430FC1A21954F3400F88EAC /* SensorCoreDataStorage.swift */,
+			);
+			path = CoreDataStorage;
+			sourceTree = "<group>";
+		};
+		C4B74CC721D5EC340040CCB0 /* PeriodChooser */ = {
+			isa = PBXGroup;
+			children = (
+				C4B74CC821D5EC660040CCB0 /* PeriodChooserViewController.swift */,
+				C4B74CC921D5EC660040CCB0 /* PeriodChooserViewController.xib */,
+			);
+			path = PeriodChooser;
+			sourceTree = "<group>";
+		};
+		C4B74CCC21D5FA100040CCB0 /* TimePeriod */ = {
+			isa = PBXGroup;
+			children = (
+				C4B74CCD21D5FA510040CCB0 /* TimePeriod.swift */,
+			);
+			path = TimePeriod;
+			sourceTree = "<group>";
+		};
+		C4C84A2B21E056B200973E4C /* Core Layer */ = {
+			isa = PBXGroup;
+			children = (
+				C4C84A2C21E056BC00973E4C /* TimePeriod */,
+			);
+			path = "Core Layer";
+			sourceTree = "<group>";
+		};
+		C4C84A2C21E056BC00973E4C /* TimePeriod */ = {
+			isa = PBXGroup;
+			children = (
+				C4C84A2D21E056DD00973E4C /* TimePeriodTests.swift */,
+			);
+			path = TimePeriod;
+			sourceTree = "<group>";
+		};
+		C4C91A6221E1E12E00BB5F51 /* SensorDataType */ = {
+			isa = PBXGroup;
+			children = (
+				C4C91A6321E1E14F00BB5F51 /* SensorDataType.swift */,
+			);
+			path = SensorDataType;
 			sourceTree = "<group>";
 		};
 		F255081D45F3E4E1E12EB69F /* Pods */ = {
@@ -470,6 +542,7 @@
 				85C2F98D217A62240038C8D1 /* Main.storyboard in Resources */,
 				85F194B3217AFCB300905A74 /* SensorTableViewCell.xib in Resources */,
 				85C2F9BA217A68440038C8D1 /* DashBoardViewController.xib in Resources */,
+				C4B74CCB21D5EC660040CCB0 /* PeriodChooserViewController.xib in Resources */,
 				85C2F9B3217A62240038C8D1 /* Assets.xcassets in Resources */,
 				85C2F98C217A62240038C8D1 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -582,20 +655,26 @@
 				85C2F99C217A62240038C8D1 /* IRouter.swift in Sources */,
 				85AB704A217CF13F0043D729 /* UIColor+colorFromHex.swift in Sources */,
 				85AB7050217D002D0043D729 /* BTConnectionService.swift in Sources */,
-				85C2F999217A62240038C8D1 /* KSGLocalizedError.swift in Sources */,
+				C430FC1B21954F3400F88EAC /* SensorCoreDataStorage.swift in Sources */,
+				85C2F999217A62240038C8D1 /* ErrorWithNote.swift in Sources */,
 				85C2F91B217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld in Sources */,
 				85C2F9B0217A62240038C8D1 /* Object+Extensions.swift in Sources */,
 				85F194B2217AFCB300905A74 /* SensorTableViewCell.swift in Sources */,
+				C4B74CCE21D5FA510040CCB0 /* TimePeriod.swift in Sources */,
 				85C2F9C0217A689C0038C8D1 /* DashBoardViewModel.swift in Sources */,
 				85C2F9A9217A62240038C8D1 /* StateStorage.swift in Sources */,
+				C4B74CCA21D5EC660040CCB0 /* PeriodChooserViewController.swift in Sources */,
+				C4C91A6421E1E14F00BB5F51 /* SensorDataType.swift in Sources */,
 				85C2F99F217A62240038C8D1 /* IRootRouter.swift in Sources */,
 				85B2BEE4217E5C9A002366B3 /* SensorDataUnit.swift in Sources */,
 				85C2F9BD217A68750038C8D1 /* DashBoardRouter.swift in Sources */,
+				C430FC1E2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift in Sources */,
 				85C2F9A0217A62240038C8D1 /* AppDelegate.swift in Sources */,
 				85C2F9A3217A62240038C8D1 /* BaseViewModel.swift in Sources */,
 				85C2F9AF217A62240038C8D1 /* UIViewController+Extensions.swift in Sources */,
 				85C2F996217A62240038C8D1 /* ISignalsProcessingViewController.swift in Sources */,
-				85AB704D217CF82D0043D729 /* SensorData.swift in Sources */,
+				85AB704D217CF82D0043D729 /* SensorDataSet.swift in Sources */,
+				C430FC1921954D7F00F88EAC /* ISensorDataStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85C2F92B217A60B10038C8D1 /* BLEMeteoTests.swift in Sources */,
+				C4C84A2E21E056DD00973E4C /* TimePeriodTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,7 +843,10 @@
 				DEVELOPMENT_TEAM = ECXQ8F5RNV;
 				INFOPLIST_FILE = "BLEMeteo/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Serj.Kultenko.BLEMeteo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -781,7 +864,10 @@
 				DEVELOPMENT_TEAM = ECXQ8F5RNV;
 				INFOPLIST_FILE = "BLEMeteo/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Serj.Kultenko.BLEMeteo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -798,7 +884,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ECXQ8F5RNV;
 				INFOPLIST_FILE = BLEMeteoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Serj.Kultenko.BLEMeteoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -816,7 +906,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ECXQ8F5RNV;
 				INFOPLIST_FILE = BLEMeteoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Serj.Kultenko.BLEMeteoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

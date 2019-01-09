@@ -12,29 +12,19 @@ import SwiftChart
 class SensorTableViewCell: UITableViewCell {
 
     // MARK: - Vars
-    var sensorData: SensorData?
+    var sensorData: SensorDataSet?
     
     // MARK: - IB Outlets
-    //@IBOutlet weak var graphView: ScrollableGraphView!
     @IBOutlet weak var chart: Chart!
     @IBOutlet weak var chartValueLabel: UILabel!
-    
+    @IBOutlet weak var hintView: UIView!
     
     // MARK: - View Lificycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-
-        //initializeChart()
+        hintView.isHidden = true
     }
 
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-    
-    
     // MARK: Helper Functions
     
     func initializeChart() {
@@ -44,29 +34,17 @@ class SensorTableViewCell: UITableViewCell {
         chart.removeAllSeries()
 
         // Initialize data series and labels
-        //let stockValues = getStockValues()
-        
-        var serieData: [(Double, Double)] = []
+        var seriesData: [(Double, Double)] = []
         var labels: [Double] = []
         var labelsAsString: Array<String> = []
 
-        var formatter = DateFormatter()
-        
-        //formatter.locale = Locale.current
+        let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        //formatter.timeZone = TimeZone.current//TimeZone(identifier: "UTC")
-
-        
-        
         formatter.dateFormat = "HH:mm:ss"
-        
         
         guard let minDate = sensorData.minTimeStamp(), let maxDate = sensorData.maxTimeStamp() else { return }
         
         let seconds = maxDate.timeIntervalSince(minDate)
-        
-
-        //let seconds = sensorData.pointsNumber * 2
         var periods = 0
         var period = 0
         if seconds > 24 * 60 * 60 {
@@ -85,7 +63,6 @@ class SensorTableViewCell: UITableViewCell {
         for i in 0...periods {
             labels.append(Double(i))
             let periodAsString = formatter.string(from: minDate.addingTimeInterval(Double(i) * Double(period)))
-            //let periodAsString = "-\((periods - i) * period) sec"
             labelsAsString.append(periodAsString)
         }
 
@@ -93,39 +70,20 @@ class SensorTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM"
         
-        
         for i in 0..<sensorData.pointsNumber {
             guard let value = sensorData.valueForPoint(withIndex: i),
                 let time = sensorData.timestampForPoint(withIndex: i) else { break }
             //let time = i * 2
             let currentPeriod = Double(time.timeIntervalSince(minDate)) / Double(period)
-            serieData.append((Double(currentPeriod), value))
+            seriesData.append((Double(currentPeriod), value))
         }
         
-        
-        /*
-        for (i, value) in stockValues.enumerated() {
-            
-            serieData.append(value["close"] as! Double)
-            
-            // Use only one label for each month
-            let month = Int(dateFormatter.string(from: value["date"] as! Date))!
-            let monthAsString:String = dateFormatter.monthSymbols[month - 1]
-            if (labels.count == 0 || labelsAsString.last != monthAsString) {
-                labels.append(Double(i))
-                labelsAsString.append(monthAsString)
-            }
-        }
- */
-        guard serieData.count > 0 else { return }
+        guard seriesData.count > 0 else { return }
 
-
-        
-        let series = ChartSeries(data: serieData)
+        let series = ChartSeries(data: seriesData)
         series.area = true
         
         // Configure chart layout
-        
         chart.lineWidth = 0.5
         chart.labelFont = UIFont.systemFont(ofSize: 12)
         chart.xLabels = labels
@@ -135,71 +93,42 @@ class SensorTableViewCell: UITableViewCell {
         chart.xLabelsTextAlignment = .center
         chart.yLabelsOnRightSide = true
         // Add some padding above the x-axis
-        chart.minY = serieData.compactMap({ (x, y) -> Double? in
+        chart.minY = seriesData.compactMap({ (x, y) -> Double? in
             return y
         }).min()! - 5
         
         chart.add(series)
-        
     }
-
-
 }
 
 extension SensorTableViewCell: ChartDelegate {
-    // Chart delegate
     
     func didTouchChart(_ chart: Chart, indexes: Array<Int?>, x: Double, left: CGFloat) {
-        
-//        if let value = chart.valueForSeries(0, atIndex: indexes[0]) {
-//
-//            let numberFormatter = NumberFormatter()
-//            numberFormatter.minimumFractionDigits = 2
-//            numberFormatter.maximumFractionDigits = 2
-//            label.text = numberFormatter.string(from: NSNumber(value: value))
-//
-//            // Align the label to the touch left position, centered
-//            var constant = labelLeadingMarginInitialConstant + left - (label.frame.width / 2)
-//
-//            // Avoid placing the label on the left of the chart
-//            if constant < labelLeadingMarginInitialConstant {
-//                constant = labelLeadingMarginInitialConstant
-//            }
-//
-//            // Avoid placing the label on the right of the chart
-//            let rightMargin = chart.frame.width - label.frame.width
-//            if constant > rightMargin {
-//                constant = rightMargin
-//            }
-//
-//            labelLeadingMarginConstraint.constant = constant
-//
-//        }
-        
+        guard let sensorData = sensorData else { return }
+        if let value = chart.valueForSeries(0, atIndex: indexes[0]) {
+            let numberFormatter = sensorData.numberFormatter
+            let text = numberFormatter.string(from: NSNumber(value: value)) ?? ""
+            chartValueLabel.text = text
+            
+            let font = chartValueLabel.font
+            var attributes: [NSAttributedString.Key: Any] = [:]
+            attributes[.font] = font
+            let constraintSize = CGSize(width: .greatestFiniteMagnitude, height: chartValueLabel.frame.height)
+            let labelFrameCulculated = text.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            let labelWidth = labelFrameCulculated.width
+            hintView.frame = CGRect(x: left, y: hintView.frame.origin.y, width: labelWidth + 10, height: hintView.frame.height)
+            let hintViewWidth = hintView.frame.width
+
+            chartValueLabel.frame = CGRect(x: (hintViewWidth - labelWidth)/2, y: chartValueLabel.frame.origin.y, width: labelWidth, height: chartValueLabel.frame.height)
+            
+            hintView.isHidden = false
+        }
     }
     
     func didFinishTouchingChart(_ chart: Chart) {
-//        label.text = ""
-//        labelLeadingMarginConstraint.constant = labelLeadingMarginInitialConstant
     }
     
     func didEndTouchingChart(_ chart: Chart) {
-        
+        hintView.isHidden = true
     }
 }
-
-/*extension SensorTableViewCell: ScrollableGraphViewDataSource {
-
-    func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
-        return sensorData?.valueForPoint(withIndex: pointIndex) ?? 0
-    }
-    
-    func label(atIndex pointIndex: Int) -> String {
-        return "FEB \(pointIndex+1)"
-    }
-    
-    func numberOfPoints() -> Int {
-        return sensorData?.pointsNumber ?? 0
-    }
-}
-*/

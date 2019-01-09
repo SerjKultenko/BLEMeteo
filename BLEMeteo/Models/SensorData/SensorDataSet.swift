@@ -8,10 +8,24 @@
 
 import Foundation
 
-class SensorData {
+class SensorDataSet {
+    
+    // MARK: - Vars
+    var type: SensorDataType
+    
+    //var sensorDataStorage: ISensorDataStorage?
+    var pointsMaxNumber: Int = 500
     
     private let lock: NSLock = NSLock()
     private var points: [(timestamp: Date, value: Double)] = []
+    
+    var numberFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = 2
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.minimumIntegerDigits = 1
+        return numberFormatter
+    }()
     
     var pointsNumber: Int {
         lock.lock()
@@ -54,9 +68,15 @@ class SensorData {
         return result
     }
     
-    func appendPoint(atTimeStamp timestamp: Date, withValue value: Double) {
+    /*func appendPoint(atTimeStamp timestamp: Date, withValue value: Double) {
         lock.lock()
         points.append((timestamp, value))
+        lock.unlock()
+    }*/
+    
+    func setData(withPoints points: [(timestamp: Date, value: Double)]) {
+        lock.lock()
+        self.points = points
         lock.unlock()
     }
     
@@ -85,5 +105,11 @@ class SensorData {
         }
         points = data
         lock.unlock()
+    }
+    
+    
+    // MARK: - Initialization
+    init(type: SensorDataType) {
+        self.type = type
     }
 }
