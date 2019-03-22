@@ -40,6 +40,8 @@
 		C4B74CCE21D5FA510040CCB0 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B74CCD21D5FA510040CCB0 /* TimePeriod.swift */; };
 		C4C84A2E21E056DD00973E4C /* TimePeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C84A2D21E056DD00973E4C /* TimePeriodTests.swift */; };
 		C4C91A6421E1E14F00BB5F51 /* SensorDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C91A6321E1E14F00BB5F51 /* SensorDataType.swift */; };
+		C4CF91782238AD61005552A1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF91762238AD61005552A1 /* CalendarViewController.swift */; };
+		C4CF91792238AD61005552A1 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF91772238AD61005552A1 /* CalendarViewController.xib */; };
 		F71AAC0011914B870F2C380E /* Pods_BLEMeteoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D69ADE36A72D05997D79E6D /* Pods_BLEMeteoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,8 @@
 		C4B74CCD21D5FA510040CCB0 /* TimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
 		C4C84A2D21E056DD00973E4C /* TimePeriodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodTests.swift; sourceTree = "<group>"; };
 		C4C91A6321E1E14F00BB5F51 /* SensorDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataType.swift; sourceTree = "<group>"; };
+		C4CF91762238AD61005552A1 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		C4CF91772238AD61005552A1 /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		E23711792CB6503F4A08C19B /* Pods-BLEMeteoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E569E35DE5E550A1A4BDC9C3 /* Pods-BLEMeteo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteo/Pods-BLEMeteo.release.xcconfig"; sourceTree = "<group>"; };
 		FFEC9BA04034362D0B3B66FA /* Pods-BLEMeteoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 		85C2F935217A62230038C8D1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C4CF91752238ACFA005552A1 /* CalendarViewController */,
 				C4B74CC721D5EC340040CCB0 /* PeriodChooser */,
 				85F194AF217AFC8100905A74 /* SensorTableViewCell */,
 				85C2F9B6217A68220038C8D1 /* DashBoardViewController */,
@@ -443,6 +448,15 @@
 			path = SensorDataType;
 			sourceTree = "<group>";
 		};
+		C4CF91752238ACFA005552A1 /* CalendarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C4CF91762238AD61005552A1 /* CalendarViewController.swift */,
+				C4CF91772238AD61005552A1 /* CalendarViewController.xib */,
+			);
+			path = CalendarViewController;
+			sourceTree = "<group>";
+		};
 		F255081D45F3E4E1E12EB69F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +559,7 @@
 				C4B74CCB21D5EC660040CCB0 /* PeriodChooserViewController.xib in Resources */,
 				85C2F9B3217A62240038C8D1 /* Assets.xcassets in Resources */,
 				85C2F98C217A62240038C8D1 /* LaunchScreen.storyboard in Resources */,
+				C4CF91792238AD61005552A1 /* CalendarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,14 +580,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BLEMeteo/Pods-BLEMeteo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CrispyCalendar/CrispyCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CrispyCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
@@ -589,7 +608,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CrispyCalendar/CrispyCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
@@ -597,7 +618,9 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CrispyCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
@@ -656,6 +679,7 @@
 				85AB704A217CF13F0043D729 /* UIColor+colorFromHex.swift in Sources */,
 				85AB7050217D002D0043D729 /* BTConnectionService.swift in Sources */,
 				C430FC1B21954F3400F88EAC /* SensorCoreDataStorage.swift in Sources */,
+				C4CF91782238AD61005552A1 /* CalendarViewController.swift in Sources */,
 				85C2F999217A62240038C8D1 /* ErrorWithNote.swift in Sources */,
 				85C2F91B217A60AE0038C8D1 /* BLEMeteo.xcdatamodeld in Sources */,
 				85C2F9B0217A62240038C8D1 /* Object+Extensions.swift in Sources */,

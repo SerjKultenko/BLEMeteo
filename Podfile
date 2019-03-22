@@ -1,3 +1,4 @@
+#source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '11.0'
 
 # ignore all warnings from all pods
@@ -11,6 +12,7 @@ def mainPods
   pod 'NVActivityIndicatorView/AppExtension', '~>4.0'
   #pod 'ScrollableGraphView'
   pod "SwiftChart"
+  pod 'CrispyCalendar', '~>1.0.0-rc06'
 end
 
 target 'BLEMeteo' do

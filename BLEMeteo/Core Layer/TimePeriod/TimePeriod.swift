@@ -60,7 +60,7 @@ struct TimePeriod {
             return dateSince
         }
 
-        // Return Today if something go wrong
+        // Return Today if something goes wrong
         return today
     }
     
@@ -89,12 +89,30 @@ struct TimePeriod {
             return dateTill
         }
         
-        // Return Today if something go wrong
+        // Return Today if something goes wrong
         return today
     }
     
     func dateBelongsToPeriod(date: Date) -> Bool {
         return dateSince <= date && dateTill >= date
+    }
+    
+    var description: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+
+        switch type {
+        case .today:
+            return "Today"
+        case .last7Days, .last30Days, .thisWeek, .thisMonth, .thisYear:
+            return dateFormatter.string(from: dateSince) + " - " + dateFormatter.string(from: dateTill)
+        case .customPeriod(let dateSince, let dateTill):
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .short
+            return dateFormatter.string(from: dateSince) + " - " + dateFormatter.string(from: dateTill)
+        }
     }
     
     // MARK: - Initialization

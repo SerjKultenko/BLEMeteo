@@ -34,18 +34,18 @@ class SensorCoreDataStorage: ISensorDataStorage {
             let request: NSFetchRequest<SensorDataEntity> = SensorDataEntity.fetchRequest()
             request.predicate = self?.getPredicateForConditions(type: type, from: from, till: till)
 
-            var foundSensorDatas = [SensorDataUnit]()
+            var foundSensorData = [SensorDataUnit]()
             do {
                 let requestResult = try context.fetch(request)
                 if requestResult.count > 0 {
                     for sensorDataEntity in requestResult {
-                        try foundSensorDatas.append(sensorDataEntity.createDTO())
+                        try foundSensorData.append(sensorDataEntity.createDTO())
                     }
                 }
             } catch {
                 completion([])
             }
-            completion(foundSensorDatas)
+            completion(foundSensorData)
         }
     }
 
@@ -57,22 +57,22 @@ class SensorCoreDataStorage: ISensorDataStorage {
                 NSSortDescriptor(key: "timestamp", ascending: true),
             ]
             
-            var foundSensorDatas = [SensorDataUnit]()
+            var foundSensorData = [SensorDataUnit]()
             do {
                 let requestResult = try context.fetch(request)
                 if requestResult.count > 0 {
                     if requestResult.count > pointsMaxCount {
-                            foundSensorDatas = self?.reduceSensorData(sensorData: requestResult, datefrom: from, datetill: till, pointsMaxCount: pointsMaxCount) ?? []
+                            foundSensorData = self?.reduceSensorData(sensorData: requestResult, datefrom: from, datetill: till, pointsMaxCount: pointsMaxCount) ?? []
                     } else {
                         for sensorDataEntity in requestResult {
-                            try foundSensorDatas.append(sensorDataEntity.createDTO())
+                            try foundSensorData.append(sensorDataEntity.createDTO())
                         }
                     }
                 }
             } catch {
                 completion([])
             }
-            completion(foundSensorDatas)
+            completion(foundSensorData)
         }
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxCocoa
+import CrispyCalendar
 
 class PeriodChooserViewController: UIViewController {
 
@@ -23,8 +24,10 @@ class PeriodChooserViewController: UIViewController {
     @IBOutlet weak var applyButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var midlleContainerView: UIView!
     
     // MARK: - Vars
+    
     var timePeriod: BehaviorRelay<TimePeriod>? {
         didSet {
             internalTimePeriod = timePeriod?.value
@@ -55,6 +58,13 @@ class PeriodChooserViewController: UIViewController {
                  customPeriodButton]
     }
     
+    /*var selection: CPCViewSelection = .unordered ([])/*.range(.today ..< .today)*/ {
+        didSet {
+            print(selection)
+        }
+    }*/
+
+    
     // MARK: - View Controller Lifecycle
     override func loadView() {
         view = Bundle.main.loadNibNamed(self.classString(), owner: self, options: nil)?[0] as? UIView
@@ -64,6 +74,7 @@ class PeriodChooserViewController: UIViewController {
         super.viewDidLoad()
 
         setupControls()
+        setupTitleLabel()
     }
 
     // MARK: - Utilites
@@ -71,7 +82,10 @@ class PeriodChooserViewController: UIViewController {
         for button in periodButtonsGroup {
             set(radioButton: button, statusToSelected: false)
         }
-        guard let timePeriod = timePeriod?.value else { return }
+        guard let timePeriod = timePeriod?.value else {
+            updateApplyButton()
+            return
+        }
         
         var buttonToSelect: UIButton!
         switch timePeriod.type {
@@ -92,11 +106,12 @@ class PeriodChooserViewController: UIViewController {
         }
         set(radioButton: buttonToSelect, statusToSelected: true)
         
-        applyButton.isEnabled = canApply
+        updateApplyButton()
     }
     
     private func setupTitleLabel() {
-    
+        let dateRange = getCurrentTimePeriod()
+        titleLabel.text = dateRange?.description
     }
 
     private func set(radioButton button: UIButton, statusToSelected selected: Bool) {
@@ -142,6 +157,27 @@ class PeriodChooserViewController: UIViewController {
         }
     }
     
+    func loadCalendar() {
+        let vc = CalendarViewController()
+        vc.delegate = self
+        
+        self.addChild(vc)
+        vc.view.frame = self.midlleContainerView.frame;
+        view.addSubview(vc.view)
+        vc.view.layer.borderColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0).cgColor
+        vc.view.layer.borderWidth = 1
+        vc.view.layer.cornerRadius = 10
+        vc.view.clipsToBounds = true
+        
+        vc.didMove(toParent: self)
+    }
+    
+    fileprivate func updateApplyButton() {
+        let enabled = canApply
+        applyButton.alpha = enabled ? 1 : 0.5
+        applyButton.isEnabled = enabled
+    }
+    
     // MARK: - Actions
 
     @IBAction func radioButtonAction(_ sender: UIButton) {
@@ -153,7 +189,11 @@ class PeriodChooserViewController: UIViewController {
                 set(radioButton: button, statusToSelected: true)
             }
         }
-        applyButton.isEnabled = canApply
+        updateApplyButton()
+        setupTitleLabel()
+        if sender == customPeriodButton {
+            loadCalendar()
+        }
     }
     
     @IBAction func cancelAction(_ sender: UIButton) {
@@ -166,4 +206,14 @@ class PeriodChooserViewController: UIViewController {
         timePeriod?.accept(currentTimePeriod)
     }
     
+}
+
+// MARK: - CalendarCustomDateRangeProtocol
+extension PeriodChooserViewController: CalendarCustomDateRangeProtocol {
+    func didSelectDateRange(_ dateRange: CountableRange<CPCDay>) {
+        dateFrom = dateRange.lowerBound.date
+        dateTill = dateRange.upperBound.date
+        updateApplyButton()
+        setupTitleLabel()
+    }
 }

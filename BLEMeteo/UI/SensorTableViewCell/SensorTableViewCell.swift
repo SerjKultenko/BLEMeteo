@@ -104,7 +104,7 @@ class SensorTableViewCell: UITableViewCell {
 extension SensorTableViewCell: ChartDelegate {
     
     func didTouchChart(_ chart: Chart, indexes: Array<Int?>, x: Double, left: CGFloat) {
-        guard let sensorData = sensorData else { return }
+        guard let sensorData = sensorData, !indexes.isEmpty else { return }
         if let value = chart.valueForSeries(0, atIndex: indexes[0]) {
             let numberFormatter = sensorData.numberFormatter
             let text = numberFormatter.string(from: NSNumber(value: value)) ?? ""

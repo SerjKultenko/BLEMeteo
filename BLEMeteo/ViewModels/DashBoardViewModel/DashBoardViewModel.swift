@@ -74,30 +74,62 @@ class DashBoardViewModel: BaseViewModel {
                     safeSelf.sensorsData[2].fillWithRandomData(24*60, max: 60, inTimeIntervalTillNow: TimeInterval(24 * 60 * 60), shouldIncludeOutliers: true)
                 }
             } else {
-                guard let sensorData = sensorData else { return }
-                safeSelf.sensorDataStorage.save(sensorDataUnit: sensorData, completion: {[weak self] (error) in
-                    guard let safeSelf = self, safeSelf.timePeriod.value.dateBelongsToPeriod(date: sensorData.timeStamp) == true  else { return }
-                    
-                    let sensorIndex = safeSelf.getSensorIndex(forSensorType: sensorData.type)
-                    let sensorDataSet = safeSelf.sensorsData[sensorIndex]
-                    
-                    safeSelf.sensorDataStorage.findSensorData(withType: sensorData.type,
-                                                              from: safeSelf.timePeriod.value.dateSince,
-                                                              till: safeSelf.timePeriod.value.dateTill,
-                                                              pointsMaxCount: sensorDataSet.pointsMaxNumber,
-                                                              completion:
-                        { [weak self] (sensorDataArray) in
-                            let pointsData: [(timestamp: Date, value: Double)] = sensorDataArray.map({ (sensorDataUnit) -> (timestamp: Date, value: Double) in
-                                return (sensorDataUnit.timeStamp, sensorDataUnit.value)
-                            })
-                            
-                            sensorDataSet.setData(withPoints: pointsData)
-                            DispatchQueue.main.async {
-                                self?.reloadDataSignal.onNext(sensorIndex)
-                            }
-                    })
-                })
+                if let sensorData = sensorData {
+                    safeSelf.didReceive(sensorData: sensorData)
+                }
             }
         }
     }
+    
+    // MARK: - Utilites
+    
+    private func didReceive(sensorData: SensorDataUnit) {
+        sensorDataStorage.save(sensorDataUnit: sensorData, completion: {[weak self] (error) in
+            guard let safeSelf = self, safeSelf.timePeriod.value.dateBelongsToPeriod(date: sensorData.timeStamp) == true  else { return }
+            
+//            let sensorIndex = safeSelf.getSensorIndex(forSensorType: sensorData.type)
+//            let sensorDataSet = safeSelf.sensorsData[sensorIndex]
+            
+            safeSelf.reloadSensorData(withType: sensorData.type)
+            /*safeSelf.sensorDataStorage.findSensorData(withType: sensorData.type,
+                                                      from: safeSelf.timePeriod.value.dateSince,
+                                                      till: safeSelf.timePeriod.value.dateTill,
+                                                      pointsMaxCount: sensorDataSet.pointsMaxNumber,
+                                                      completion:
+                { [weak self] (sensorDataArray) in
+                    let pointsData: [(timestamp: Date, value: Double)] = sensorDataArray.map({ (sensorDataUnit) -> (timestamp: Date, value: Double) in
+                        return (sensorDataUnit.timeStamp, sensorDataUnit.value)
+                    })
+                    
+                    sensorDataSet.setData(withPoints: pointsData)
+                    DispatchQueue.main.async {
+                        self?.reloadDataSignal.onNext(sensorIndex)
+                    }
+            })*/
+        })
+        
+    }
+    
+    private func reloadSensorData(withType type: SensorDataType) {
+        let sensorIndex = getSensorIndex(forSensorType: type)
+        let sensorDataSet = sensorsData[sensorIndex]
+
+        sensorDataStorage.findSensorData(withType: type,
+                                                  from: timePeriod.value.dateSince,
+                                                  till: timePeriod.value.dateTill,
+                                                  pointsMaxCount: sensorDataSet.pointsMaxNumber,
+                                                  completion:
+            { [weak self] (sensorDataArray) in
+                let pointsData: [(timestamp: Date, value: Double)] = sensorDataArray.map({ (sensorDataUnit) -> (timestamp: Date, value: Double) in
+                    return (sensorDataUnit.timeStamp, sensorDataUnit.value)
+                })
+                
+                sensorDataSet.setData(withPoints: pointsData)
+                DispatchQueue.main.async {
+                    self?.reloadDataSignal.onNext(sensorIndex)
+                }
+        })
+
+    }
+    
 }

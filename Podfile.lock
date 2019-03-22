@@ -1,16 +1,21 @@
 PODS:
-  - NVActivityIndicatorView (4.4.0):
-    - NVActivityIndicatorView/Presenter (= 4.4.0)
-  - NVActivityIndicatorView/AppExtension (4.4.0)
-  - NVActivityIndicatorView/Presenter (4.4.0)
-  - RxCocoa (4.3.1):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.3.1)
-  - RxTest (4.3.1):
-    - RxSwift (~> 4.0)
+  - CrispyCalendar (1.0.0-rc06)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/AppExtension (4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+  - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - RxTest (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+    - RxSwift (>= 4.4.2, ~> 4.4)
   - SwiftChart (1.0.1)
 
 DEPENDENCIES:
+  - CrispyCalendar (~> 1.0.0-rc06)
   - NVActivityIndicatorView (~> 4.0)
   - NVActivityIndicatorView/AppExtension (~> 4.0)
   - RxCocoa (~> 4.0)
@@ -19,20 +24,24 @@ DEPENDENCIES:
   - SwiftChart
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
+    - CrispyCalendar
     - NVActivityIndicatorView
+    - RxAtomic
     - RxCocoa
     - RxSwift
     - RxTest
     - SwiftChart
 
 SPEC CHECKSUMS:
-  NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
-  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
+  CrispyCalendar: 257488fdc12c660e216d8a5ed0a8aa006507b377
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  RxTest: 6433d5b6229f5de424fa534bc22b5e6c38b0b671
   SwiftChart: ba767a678d568a5ee22d419e146a0582865e1aff
 
-PODFILE CHECKSUM: 2160c833c16d6b60cc27f5983321edb8d31eab28
+PODFILE CHECKSUM: a28e1b222cb739e1d48d0ceca07c475083fcafff
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

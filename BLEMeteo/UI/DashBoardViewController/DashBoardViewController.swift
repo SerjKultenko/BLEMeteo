@@ -58,12 +58,24 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
                     break
                 }
             }).disposed(by: disposeBag)
+        
+        viewModel?.timePeriod
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (timePeriod) in
+                self?.updateFilterTitle()
+            }).disposed(by: disposeBag)
+    }
+    
+    fileprivate func updateFilterTitle() {
+        let timePeriod = viewModel?.timePeriod.value
+        title = timePeriod?.description
     }
 
     // MARK: - Actions
     
     @objc func filterButtonPressed() {
         let vc = PeriodChooserViewController()
+        vc.timePeriod = viewModel?.timePeriod
         vc.modalPresentationStyle = .popover
         present(vc, animated: true, completion: nil)
         vc.popoverPresentationController?.barButtonItem = filterBarButton
