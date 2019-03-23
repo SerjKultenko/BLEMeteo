@@ -69,9 +69,7 @@ class DashBoardViewModel: BaseViewModel {
             guard let safeSelf = self else { return }
             if error != nil {
                 if let btServiceError = error as? BTConnectionServiceError, btServiceError == .bluetoothStatusUnsuported {
-                    safeSelf.sensorsData[0].fillWithRandomData(100, max: 100, inTimeIntervalTillNow: TimeInterval(24 * 60 * 4), shouldIncludeOutliers: true)
-                    safeSelf.sensorsData[1].fillWithRandomData(60, max: 40, inTimeIntervalTillNow: TimeInterval(24 * 60 * 4), shouldIncludeOutliers: true)
-                    safeSelf.sensorsData[2].fillWithRandomData(24*60, max: 60, inTimeIntervalTillNow: TimeInterval(24 * 60 * 60), shouldIncludeOutliers: true)
+                    //safeSelf.generateFakeHistoryData()
                 }
             } else {
                 if let sensorData = sensorData {
@@ -79,33 +77,39 @@ class DashBoardViewModel: BaseViewModel {
                 }
             }
         }
+        
+        timePeriod.subscribe(onNext: { [weak self] (period) in
+            self?.reloadAllSensorsData()
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - Utilites
+    
+    private func reloadAllSensorsData() {
+        for sensor in sensorsData {
+            reloadSensorData(withType: sensor.type)
+        }
+    }
+
+    
+    private func generateFakeHistoryData() {
+        let fakeDataGenerator = FakeDataGenerator(sensorTypes: [.temperature, .humidity, .pressure, .temperatureBMP280, .carbonDioxidePPM], sensorDataStorage: sensorDataStorage)
+        let dateTill = Date()
+        let dateFrom = dateTill.addingTimeInterval(-30*24*60*60)
+        fakeDataGenerator.generateHistoryData(dateFrom: dateFrom, dateTill: dateTill)
+    }
+
+    private func setupSensorsWithFakeData() {
+        sensorsData[0].fillWithRandomData(100, max: 100, inTimeIntervalTillNow: TimeInterval(24 * 60 * 4), shouldIncludeOutliers: true)
+        sensorsData[1].fillWithRandomData(60, max: 40, inTimeIntervalTillNow: TimeInterval(24 * 60 * 4), shouldIncludeOutliers: true)
+        sensorsData[2].fillWithRandomData(24*60, max: 60, inTimeIntervalTillNow: TimeInterval(24 * 60 * 60), shouldIncludeOutliers: true)
+    }
     
     private func didReceive(sensorData: SensorDataUnit) {
         sensorDataStorage.save(sensorDataUnit: sensorData, completion: {[weak self] (error) in
             guard let safeSelf = self, safeSelf.timePeriod.value.dateBelongsToPeriod(date: sensorData.timeStamp) == true  else { return }
             
-//            let sensorIndex = safeSelf.getSensorIndex(forSensorType: sensorData.type)
-//            let sensorDataSet = safeSelf.sensorsData[sensorIndex]
-            
             safeSelf.reloadSensorData(withType: sensorData.type)
-            /*safeSelf.sensorDataStorage.findSensorData(withType: sensorData.type,
-                                                      from: safeSelf.timePeriod.value.dateSince,
-                                                      till: safeSelf.timePeriod.value.dateTill,
-                                                      pointsMaxCount: sensorDataSet.pointsMaxNumber,
-                                                      completion:
-                { [weak self] (sensorDataArray) in
-                    let pointsData: [(timestamp: Date, value: Double)] = sensorDataArray.map({ (sensorDataUnit) -> (timestamp: Date, value: Double) in
-                        return (sensorDataUnit.timeStamp, sensorDataUnit.value)
-                    })
-                    
-                    sensorDataSet.setData(withPoints: pointsData)
-                    DispatchQueue.main.async {
-                        self?.reloadDataSignal.onNext(sensorIndex)
-                    }
-            })*/
         })
         
     }

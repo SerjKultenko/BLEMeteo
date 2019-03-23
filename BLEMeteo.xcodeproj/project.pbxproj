@@ -42,6 +42,7 @@
 		C4C91A6421E1E14F00BB5F51 /* SensorDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C91A6321E1E14F00BB5F51 /* SensorDataType.swift */; };
 		C4CF91782238AD61005552A1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF91762238AD61005552A1 /* CalendarViewController.swift */; };
 		C4CF91792238AD61005552A1 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF91772238AD61005552A1 /* CalendarViewController.xib */; };
+		C4EBDE682244B837006AF285 /* FakeDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EBDE672244B837006AF285 /* FakeDataGenerator.swift */; };
 		F71AAC0011914B870F2C380E /* Pods_BLEMeteoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D69ADE36A72D05997D79E6D /* Pods_BLEMeteoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		C4C91A6321E1E14F00BB5F51 /* SensorDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataType.swift; sourceTree = "<group>"; };
 		C4CF91762238AD61005552A1 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C4CF91772238AD61005552A1 /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
+		C4EBDE672244B837006AF285 /* FakeDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataGenerator.swift; sourceTree = "<group>"; };
 		E23711792CB6503F4A08C19B /* Pods-BLEMeteoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E569E35DE5E550A1A4BDC9C3 /* Pods-BLEMeteo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteo/Pods-BLEMeteo.release.xcconfig"; sourceTree = "<group>"; };
 		FFEC9BA04034362D0B3B66FA /* Pods-BLEMeteoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEMeteoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEMeteoTests/Pods-BLEMeteoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		85C2F979217A62240038C8D1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C4EBDE662244B811006AF285 /* FakeDataGenerator */,
 				C430FC1721954D4E00F88EAC /* CoreDataStorage */,
 				85AB704E217CFFE20043D729 /* BTConnectionService */,
 			);
@@ -455,6 +458,14 @@
 				C4CF91772238AD61005552A1 /* CalendarViewController.xib */,
 			);
 			path = CalendarViewController;
+			sourceTree = "<group>";
+		};
+		C4EBDE662244B811006AF285 /* FakeDataGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				C4EBDE672244B837006AF285 /* FakeDataGenerator.swift */,
+			);
+			path = FakeDataGenerator;
 			sourceTree = "<group>";
 		};
 		F255081D45F3E4E1E12EB69F /* Pods */ = {
@@ -676,6 +687,7 @@
 			files = (
 				85C2F9B9217A68440038C8D1 /* DashBoardViewController.swift in Sources */,
 				85C2F99C217A62240038C8D1 /* IRouter.swift in Sources */,
+				C4EBDE682244B837006AF285 /* FakeDataGenerator.swift in Sources */,
 				85AB704A217CF13F0043D729 /* UIColor+colorFromHex.swift in Sources */,
 				85AB7050217D002D0043D729 /* BTConnectionService.swift in Sources */,
 				C430FC1B21954F3400F88EAC /* SensorCoreDataStorage.swift in Sources */,

@@ -40,6 +40,7 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
             bindSignalProcessing(forBaseViewModel: viewModel!)
         }
         reactiveBindings()
+        
     }
     
     private func reactiveBindings() {
