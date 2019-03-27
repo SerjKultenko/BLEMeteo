@@ -40,18 +40,6 @@ class DashBoardRouter: IRouter, IRootRouter {
             assertionFailure(String(format:"Context in %@ is not RouteType" , self.classString()) )
             return
         }
-        //    guard let presentingViewController = presentingViewController else {
-        //      assertionFailure("presentingViewController was not set")
-        //      return
-        //    }
-        
-//        switch routeType {
-//        case .gotoGeneratorProperties:
-//            break
-//        case .changePreset:
-//            let router = PresetsRouter()
-//            router.present(on: presentingViewController, context: rootVCContext?.appState, animated: true, completion: nil)
-//        }
     }
     
     func dismiss(with context: Any?, animated: Bool, completion: ((Bool) -> Void)?) {

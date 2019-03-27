@@ -13,7 +13,6 @@ class SensorDataSet {
     // MARK: - Vars
     var type: SensorDataType
     
-    //var sensorDataStorage: ISensorDataStorage?
     var pointsMaxNumber: Int = 500
     
     private let lock: NSLock = NSLock()
@@ -67,12 +66,6 @@ class SensorDataSet {
         lock.unlock()
         return result
     }
-    
-    /*func appendPoint(atTimeStamp timestamp: Date, withValue value: Double) {
-        lock.lock()
-        points.append((timestamp, value))
-        lock.unlock()
-    }*/
     
     func setData(withPoints points: [(timestamp: Date, value: Double)]) {
         lock.lock()

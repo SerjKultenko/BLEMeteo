@@ -40,40 +40,7 @@ class FakeDataGenerator {
         }
     }
     
-    func startGenerate() {
-        generationCycle()
-    }
-
-    
-    // MARK: - Private functions
-
-    private func generationCycle() {
-        let timeInterval = self.timeInterval
-        generateOneDataSet(forTimeStamp: Date(), completion: {
-            self.generatorQueue.asyncAfter(deadline: .now() + timeInterval) {
-                self.generationCycle()
-            }
-        })
-    }
-    
-    private func generateOneDataSet(forTimeStamp timeStamp: Date, completion: (() -> Void)? = nil ) {
-        let  dispatchGroup = DispatchGroup()
-        for type in sensorTypes {
-            dispatchGroup.enter()
-            let dataUnit = generateSensorDataUnit(withType: type, timeStamp: timeStamp)
-            sensorDataStorage.save(sensorDataUnit: dataUnit) { (error) in
-                dispatchGroup.leave()
-                if error != nil {
-                    print("Fake sensor data generator error: \(String(describing: error))")
-                }
-            }
-        }
-        dispatchGroup.notify(queue: generatorQueue) {
-            completion?()
-        }
-    }
-    
-    private func generateSensorDataUnit(withType type: SensorDataType, timeStamp: Date) -> SensorDataUnit {
+    func generateSensorDataUnit(withType type: SensorDataType, timeStamp: Date) -> SensorDataUnit {
         var minValue: Double = 0.0
         let maxValue: Double
         switch type {
@@ -95,5 +62,25 @@ class FakeDataGenerator {
         let generatedData = SensorDataUnit(type: type, value: randomNumber, timeStamp: timeStamp)
         return generatedData
     }
-        
+
+    
+    // MARK: - Private functions
+
+    private func generateOneDataSet(forTimeStamp timeStamp: Date, completion: (() -> Void)? = nil ) {
+        let  dispatchGroup = DispatchGroup()
+        for type in sensorTypes {
+            dispatchGroup.enter()
+            let dataUnit = generateSensorDataUnit(withType: type, timeStamp: timeStamp)
+            sensorDataStorage.save(sensorDataUnit: dataUnit) { (error) in
+                dispatchGroup.leave()
+                if error != nil {
+                    print("Fake sensor data generator error: \(String(describing: error))")
+                }
+            }
+        }
+        dispatchGroup.notify(queue: generatorQueue) {
+            completion?()
+        }
+    }
+    
 }

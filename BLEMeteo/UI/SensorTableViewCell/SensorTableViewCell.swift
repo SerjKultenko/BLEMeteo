@@ -15,6 +15,7 @@ class SensorTableViewCell: UITableViewCell {
     var sensorData: SensorDataSet?
     
     // MARK: - IB Outlets
+    
     @IBOutlet weak var chart: Chart!
     @IBOutlet weak var chartValueLabel: UILabel!
     @IBOutlet weak var hintView: UIView!
@@ -37,17 +38,20 @@ class SensorTableViewCell: UITableViewCell {
         var seriesData: [(Double, Double)] = []
         var labels: [Double] = []
         var labelsAsString: Array<String> = []
-
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        formatter.dateFormat = "HH:mm:ss"
+        let maxPeriods: Int = 15
         
         guard let minDate = sensorData.minTimeStamp(), let maxDate = sensorData.maxTimeStamp() else { return }
         
         let seconds = maxDate.timeIntervalSince(minDate)
         var periods = 0
         var period = 0
-        if seconds > 24 * 60 * 60 {
+        if seconds > 3 * 24 * 60 * 60 {
+            period = 24 * 60 * 60
+        } else if seconds > 24 * 60 * 60 {
+            period = 60 * 60
+        } else if seconds > 24 * 60 * 60 {
+            period = 60 * 60
+        } else if seconds > 8 * 60 * 60 {
             period = 60 * 60
         } else if seconds > 60 * 60 {
             period = 10 * 60
@@ -59,17 +63,31 @@ class SensorTableViewCell: UITableViewCell {
             period = 1
         }
         periods = Int((Double(seconds) / Double(period)).rounded(.up))
+
+        if periods > maxPeriods {
+            periods = maxPeriods
+            period = Int((Double(seconds) / Double(periods)).rounded(.up))
+        }
+        
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        formatter.dateFormat = "HH:mm:ss"
+
+        if period >= 24 * 60 * 60 {
+            formatter.dateFormat = "dd/MM"
+        } else if period > 60 * 60 {
+            formatter.dateFormat = "HH"
+        } else if period > 60 {
+            formatter.dateFormat = "HH:mm"
+        }
         
         for i in 0...periods {
             labels.append(Double(i))
-            let periodAsString = formatter.string(from: minDate.addingTimeInterval(Double(i) * Double(period)))
+            let labelDate = minDate.addingTimeInterval(Double(i) * Double(period))
+            let periodAsString = formatter.string(from: labelDate)
             labelsAsString.append(periodAsString)
         }
 
-        // Date formatter to retrieve the month names
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM"
-        
         for i in 0..<sensorData.pointsNumber {
             guard let value = sensorData.valueForPoint(withIndex: i),
                 let time = sensorData.timestampForPoint(withIndex: i) else { break }
@@ -99,24 +117,47 @@ class SensorTableViewCell: UITableViewCell {
         
         chart.add(series)
     }
+    
+    lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        return dateFormatter
+    }()
+    
+    fileprivate func formateDateHint(date: Date) -> String {
+        return dateFormatter.string(from: date)
+    }
 }
 
 extension SensorTableViewCell: ChartDelegate {
     
     func didTouchChart(_ chart: Chart, indexes: Array<Int?>, x: Double, left: CGFloat) {
-        guard let sensorData = sensorData, !indexes.isEmpty else { return }
-        if let value = chart.valueForSeries(0, atIndex: indexes[0]) {
+        guard let sensorData = sensorData, !indexes.isEmpty, let valueIndex = indexes[0] else { return }
+        
+        if let value = chart.valueForSeries(0, atIndex: valueIndex) {
             let numberFormatter = sensorData.numberFormatter
-            let text = numberFormatter.string(from: NSNumber(value: value)) ?? ""
+            var text = numberFormatter.string(from: NSNumber(value: value)) ?? ""
+            if let date = sensorData.timestampForPoint(withIndex: valueIndex) {
+                let dateString = formateDateHint(date: date)
+                text += " " + dateString
+            }
             chartValueLabel.text = text
-            
+
             let font = chartValueLabel.font
             var attributes: [NSAttributedString.Key: Any] = [:]
             attributes[.font] = font
             let constraintSize = CGSize(width: .greatestFiniteMagnitude, height: chartValueLabel.frame.height)
             let labelFrameCulculated = text.boundingRect(with: constraintSize, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
             let labelWidth = labelFrameCulculated.width
-            hintView.frame = CGRect(x: left, y: hintView.frame.origin.y, width: labelWidth + 10, height: hintView.frame.height)
+            
+            let hintWidth = labelWidth + 10
+            var leftModified = left
+            
+            if left + hintWidth > contentView.bounds.width {
+                leftModified = left - hintWidth
+            }
+            hintView.frame = CGRect(x: leftModified, y: hintView.frame.origin.y, width: labelWidth + 10, height: hintView.frame.height)
             let hintViewWidth = hintView.frame.width
 
             chartValueLabel.frame = CGRect(x: (hintViewWidth - labelWidth)/2, y: chartValueLabel.frame.origin.y, width: labelWidth, height: chartValueLabel.frame.height)

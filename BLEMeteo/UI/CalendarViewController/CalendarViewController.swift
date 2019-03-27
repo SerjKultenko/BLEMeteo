@@ -15,23 +15,21 @@ protocol CalendarCustomDateRangeProtocol: class {
 
 class CalendarViewController: UIViewController {
 
+    // MARK: - IBOutlets
     @IBOutlet weak var weekView: CPCWeekView!
     @IBOutlet weak var calendarView: CPCCalendarView!
+    
+    // MARK: - Vars
     
     private var selectedDays: CountableRange <CPCDay> = .today ..< .today {
         didSet {
             delegate?.didSelectDateRange(selectedDays)
         }
     }
-//    var selection: CPCViewSelection = .range(.today ..< .today) { //.unordered ([])/*.range(.today ..< .today)*/ {
-//        didSet {
-//            print(selection)
-//        }
-//    }
 
     weak var delegate: CalendarCustomDateRangeProtocol?
     
-    var selection: CPCViewSelection { //.unordered ([])/*.range(.today ..< .today)*/ {
+    var selection: CPCViewSelection {
         get {
             return .range(selectedDays)
         }
@@ -45,7 +43,8 @@ class CalendarViewController: UIViewController {
         }
     }
 
-    
+    // MARK: - View Controller LifeCycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,6 +62,9 @@ class CalendarViewController: UIViewController {
     }
 
 }
+
+
+// MARK: - CPCCalendarViewSelectionDelegate
 
 extension CalendarViewController: CPCCalendarViewSelectionDelegate {
 
@@ -94,6 +96,8 @@ extension CalendarViewController: CPCCalendarViewSelectionDelegate {
         return true
     }
 }
+
+// MARK: - CPCDay Extension
 
 extension CPCDay {
     var date: Date? {

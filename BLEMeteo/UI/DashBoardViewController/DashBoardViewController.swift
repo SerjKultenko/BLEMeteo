@@ -84,6 +84,7 @@ class DashBoardViewController: UIViewController, ISignalsProcessingViewControlle
 
 }
 
+// MARK: - UITableViewDataSource
 extension DashBoardViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel?.sensorsCount ?? 0
@@ -107,6 +108,7 @@ extension DashBoardViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension DashBoardViewController: UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //    }

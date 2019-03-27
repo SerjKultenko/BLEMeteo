@@ -58,12 +58,6 @@ class PeriodChooserViewController: UIViewController {
                  customPeriodButton]
     }
     
-    /*var selection: CPCViewSelection = .unordered ([])/*.range(.today ..< .today)*/ {
-        didSet {
-            print(selection)
-        }
-    }*/
-
     
     // MARK: - View Controller Lifecycle
     override func loadView() {
@@ -76,13 +70,20 @@ class PeriodChooserViewController: UIViewController {
         setupControls()
         setupTitleLabel()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        self.preferredContentSize = size
+        
+    }
 
     // MARK: - Utilites
     private func setupControls() {
         for button in periodButtonsGroup {
             set(radioButton: button, statusToSelected: false)
         }
-        guard let timePeriod = timePeriod?.value else {
+        guard let timePeriod = internalTimePeriod else {
             updateApplyButton()
             return
         }
@@ -171,6 +172,20 @@ class PeriodChooserViewController: UIViewController {
         
         vc.didMove(toParent: self)
     }
+
+    func loadTimePicker() {
+        let vc = ChooseTimeViewController()
+        vc.delegate = self
+        
+        self.addChild(vc)
+        vc.view.frame = self.midlleContainerView.frame;
+        view.addSubview(vc.view)
+        vc.dateFrom = internalTimePeriod?.dateSince
+        vc.dateTill = internalTimePeriod?.dateTill
+        vc.updateControls()
+        
+        vc.didMove(toParent: self)
+    }
     
     fileprivate func updateApplyButton() {
         let enabled = canApply
@@ -196,6 +211,11 @@ class PeriodChooserViewController: UIViewController {
         }
     }
     
+    @IBAction func chooseTimeAction(_ sender: Any) {
+       loadTimePicker()
+    }
+    
+    
     @IBAction func cancelAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -213,6 +233,16 @@ extension PeriodChooserViewController: CalendarCustomDateRangeProtocol {
     func didSelectDateRange(_ dateRange: CountableRange<CPCDay>) {
         dateFrom = dateRange.lowerBound.date
         dateTill = dateRange.upperBound.date
+        updateApplyButton()
+        setupTitleLabel()
+    }
+}
+
+// MARK: - CalendarCustomDateRangeProtocol
+extension PeriodChooserViewController: CalendarCustomTimeRangeDelegate {
+    func didSelectTimePeriod(_ timePeriod: TimePeriod) {
+        internalTimePeriod = timePeriod
+        setupControls()
         updateApplyButton()
         setupTitleLabel()
     }

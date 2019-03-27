@@ -76,34 +76,6 @@ class SensorCoreDataStorage: ISensorDataStorage {
         }
     }
     
-    private func reduceSensorData(sensorData: [SensorDataEntity], datefrom: Date?, datetill: Date?, pointsMaxCount: Int) -> [SensorDataUnit] {
-        guard let startDate = datefrom ?? sensorData.first?.timestamp, let endDate = datetill ?? sensorData.last?.timestamp else {
-            return []
-        }
-        guard let typeString = sensorData.first?.type, let sensorDataType = SensorDataType(rawValue: typeString) else {
-            return []
-        }
-        var result = [SensorDataUnit]()
-        var pointsCount = 0
-        var accumulator = 0.0
-        let dateStep = endDate.timeIntervalSince(startDate) / Double(pointsMaxCount)
-        var nextPeriodThreshold: Date = startDate.addingTimeInterval(dateStep)
-        for sensorDataEntity in sensorData {
-            if let time = sensorDataEntity.timestamp, time > nextPeriodThreshold {
-                let pointTime = nextPeriodThreshold.addingTimeInterval(-dateStep/2.0)
-                result.append(SensorDataUnit(type: sensorDataType, value: accumulator / Double(pointsCount), timeStamp: pointTime))
-                
-                nextPeriodThreshold = nextPeriodThreshold.addingTimeInterval(dateStep)
-                accumulator = 0.0
-                pointsCount = 0
-            }
-            accumulator += sensorDataEntity.value
-            pointsCount += 1
-        }
-        return result
-    }
-
-    
     // Counting
     func countSensorData(withType type: SensorDataType, from: Date?, till: Date?, completion: @escaping (Int?, Error?) -> ()) {
         container?.performBackgroundTask { [weak self ] context in
@@ -156,5 +128,33 @@ class SensorCoreDataStorage: ISensorDataStorage {
             return NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         }
     }
-
+    
+    private func reduceSensorData(sensorData: [SensorDataEntity], datefrom: Date?, datetill: Date?, pointsMaxCount: Int) -> [SensorDataUnit] {
+        guard let startDate = sensorData.first?.timestamp, let endDate = datetill ?? sensorData.last?.timestamp else {
+            return []
+        }
+        guard let typeString = sensorData.first?.type, let sensorDataType = SensorDataType(rawValue: typeString) else {
+            return []
+        }
+        var result = [SensorDataUnit]()
+        var pointsCount = 0
+        var accumulator = 0.0
+        let dateStep = endDate.timeIntervalSince(startDate) / Double(pointsMaxCount)
+        var nextPeriodThreshold: Date = startDate.addingTimeInterval(dateStep)
+        for sensorDataEntity in sensorData {
+            if let time = sensorDataEntity.timestamp, time > nextPeriodThreshold {
+                let pointTime = nextPeriodThreshold.addingTimeInterval(-dateStep/2.0)
+                let value: Double = pointsCount > 0 ? accumulator / Double(pointsCount) : 0.0
+                result.append(SensorDataUnit(type: sensorDataType, value: value, timeStamp: pointTime))
+                
+                nextPeriodThreshold = nextPeriodThreshold.addingTimeInterval(dateStep)
+                accumulator = 0.0
+                pointsCount = 0
+            }
+            accumulator += sensorDataEntity.value
+            pointsCount += 1
+        }
+        return result
+    }
+    
 }

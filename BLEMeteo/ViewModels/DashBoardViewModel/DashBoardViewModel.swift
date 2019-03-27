@@ -69,6 +69,7 @@ class DashBoardViewModel: BaseViewModel {
             guard let safeSelf = self else { return }
             if error != nil {
                 if let btServiceError = error as? BTConnectionServiceError, btServiceError == .bluetoothStatusUnsuported {
+                    safeSelf.periodicalyGenerateFakeData()
                     //safeSelf.generateFakeHistoryData()
                 }
             } else {
@@ -91,9 +92,27 @@ class DashBoardViewModel: BaseViewModel {
         }
     }
 
+    private var fakeDataGenerator: FakeDataGenerator?
+    private var fakeGeneratorTypes: [SensorDataType] = [.temperature, .humidity, .pressure, .temperatureBMP280, .carbonDioxidePPM]
+    
+    private func periodicalyGenerateFakeData() {
+        if fakeDataGenerator == nil {
+            fakeDataGenerator = FakeDataGenerator(sensorTypes: fakeGeneratorTypes, sensorDataStorage: sensorDataStorage)
+            fakeDataGenerator?.timeInterval = 2.0
+        }
+        for sensorType in fakeGeneratorTypes {
+            if let sensorData = fakeDataGenerator?.generateSensorDataUnit(withType: sensorType, timeStamp: Date()) {
+                didReceive(sensorData: sensorData)
+            }
+        }
+        let timeInterval = fakeDataGenerator?.timeInterval ?? 2.0
+        DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + timeInterval) {
+            self.periodicalyGenerateFakeData()
+        }
+    }
     
     private func generateFakeHistoryData() {
-        let fakeDataGenerator = FakeDataGenerator(sensorTypes: [.temperature, .humidity, .pressure, .temperatureBMP280, .carbonDioxidePPM], sensorDataStorage: sensorDataStorage)
+        let fakeDataGenerator = FakeDataGenerator(sensorTypes: fakeGeneratorTypes, sensorDataStorage: sensorDataStorage)
         let dateTill = Date()
         let dateFrom = dateTill.addingTimeInterval(-30*24*60*60)
         fakeDataGenerator.generateHistoryData(dateFrom: dateFrom, dateTill: dateTill)
@@ -116,6 +135,8 @@ class DashBoardViewModel: BaseViewModel {
     
     private func reloadSensorData(withType type: SensorDataType) {
         let sensorIndex = getSensorIndex(forSensorType: type)
+        guard sensorIndex < sensorsData.count else { return }
+        
         let sensorDataSet = sensorsData[sensorIndex]
 
         sensorDataStorage.findSensorData(withType: type,

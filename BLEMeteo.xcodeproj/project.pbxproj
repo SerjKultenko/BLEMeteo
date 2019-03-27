@@ -32,6 +32,8 @@
 		85C2F9C0217A689C0038C8D1 /* DashBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C2F9BF217A689C0038C8D1 /* DashBoardViewModel.swift */; };
 		85F194B2217AFCB300905A74 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F194B0217AFCB300905A74 /* SensorTableViewCell.swift */; };
 		85F194B3217AFCB300905A74 /* SensorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F194B1217AFCB300905A74 /* SensorTableViewCell.xib */; };
+		C4220C6C22462524001CC449 /* ChooseTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4220C6A22462524001CC449 /* ChooseTimeViewController.swift */; };
+		C4220C6D22462524001CC449 /* ChooseTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4220C6B22462524001CC449 /* ChooseTimeViewController.xib */; };
 		C430FC1921954D7F00F88EAC /* ISensorDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430FC1821954D7F00F88EAC /* ISensorDataStorage.swift */; };
 		C430FC1B21954F3400F88EAC /* SensorCoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430FC1A21954F3400F88EAC /* SensorCoreDataStorage.swift */; };
 		C430FC1E2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430FC1C2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift */; };
@@ -88,6 +90,8 @@
 		85C2F9BF217A689C0038C8D1 /* DashBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewModel.swift; sourceTree = "<group>"; };
 		85F194B0217AFCB300905A74 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
 		85F194B1217AFCB300905A74 /* SensorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorTableViewCell.xib; sourceTree = "<group>"; };
+		C4220C6A22462524001CC449 /* ChooseTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeViewController.swift; sourceTree = "<group>"; };
+		C4220C6B22462524001CC449 /* ChooseTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseTimeViewController.xib; sourceTree = "<group>"; };
 		C430FC1821954D7F00F88EAC /* ISensorDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISensorDataStorage.swift; sourceTree = "<group>"; };
 		C430FC1A21954F3400F88EAC /* SensorCoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorCoreDataStorage.swift; sourceTree = "<group>"; };
 		C430FC1C2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorDataEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -206,12 +210,13 @@
 		85C2F935217A62230038C8D1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C4220C69224624C8001CC449 /* ChooseTimeViewController */,
 				C4CF91752238ACFA005552A1 /* CalendarViewController */,
 				C4B74CC721D5EC340040CCB0 /* PeriodChooser */,
 				85F194AF217AFC8100905A74 /* SensorTableViewCell */,
 				85C2F9B6217A68220038C8D1 /* DashBoardViewController */,
-				85C2F936217A62230038C8D1 /* Storyboards */,
 				85C2F947217A62230038C8D1 /* ISignalsProcessingViewController */,
+				85C2F936217A62230038C8D1 /* Storyboards */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -401,6 +406,15 @@
 			path = SensorTableViewCell;
 			sourceTree = "<group>";
 		};
+		C4220C69224624C8001CC449 /* ChooseTimeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C4220C6A22462524001CC449 /* ChooseTimeViewController.swift */,
+				C4220C6B22462524001CC449 /* ChooseTimeViewController.xib */,
+			);
+			path = ChooseTimeViewController;
+			sourceTree = "<group>";
+		};
 		C430FC1721954D4E00F88EAC /* CoreDataStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +582,7 @@
 				85F194B3217AFCB300905A74 /* SensorTableViewCell.xib in Resources */,
 				85C2F9BA217A68440038C8D1 /* DashBoardViewController.xib in Resources */,
 				C4B74CCB21D5EC660040CCB0 /* PeriodChooserViewController.xib in Resources */,
+				C4220C6D22462524001CC449 /* ChooseTimeViewController.xib in Resources */,
 				85C2F9B3217A62240038C8D1 /* Assets.xcassets in Resources */,
 				85C2F98C217A62240038C8D1 /* LaunchScreen.storyboard in Resources */,
 				C4CF91792238AD61005552A1 /* CalendarViewController.xib in Resources */,
@@ -705,6 +720,7 @@
 				85B2BEE4217E5C9A002366B3 /* SensorDataUnit.swift in Sources */,
 				85C2F9BD217A68750038C8D1 /* DashBoardRouter.swift in Sources */,
 				C430FC1E2195507600F88EAC /* SensorDataEntity+CoreDataClass.swift in Sources */,
+				C4220C6C22462524001CC449 /* ChooseTimeViewController.swift in Sources */,
 				85C2F9A0217A62240038C8D1 /* AppDelegate.swift in Sources */,
 				85C2F9A3217A62240038C8D1 /* BaseViewModel.swift in Sources */,
 				85C2F9AF217A62240038C8D1 /* UIViewController+Extensions.swift in Sources */,
